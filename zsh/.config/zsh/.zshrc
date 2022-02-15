@@ -83,6 +83,9 @@ _comp_options+=(globdots)
 # Enable color support
 autoload -U colors && colors
 
+# Aliases
+zsh_source_if_exists "$ZDOTDIR/aliasrc"
+
 zsh_source_if_exists "$ZDOTDIR/zshrc/direnv.zsh"
 zsh_source_if_exists "$ZDOTDIR/zshrc/starship.zsh"
 
