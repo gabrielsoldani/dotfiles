@@ -1,3 +1,31 @@
+[core]
+    # Always use LF line endings and don't perform EOL conversions.
+    #
+    # Even on Windows, which uses CRLF line endings by default, we want
+    # LF line endings so we'll get consistent behavior when we use Git
+    # through the Windows Subsystem for Linux (WSL).
+	eol = lf
+	autocrlf = input
+
+[merge]
+    # Automatically stash, merge and unstash.
+	autoStash = true
+
+[pull]
+    # Instead of merging, rebase interactively when pulling.
+	rebase = interactive
+
+[rebase]
+    # Automatically squash fixups, squashes and amends when rebasing.
+	autoSquash = true
+
+    # Automatically stash, rebase and unstash.
+	autoStash = true
+
+    # Report an error if commits are missing from the todo list.
+    # Be explicit: use `drop` instead.
+	missingCommitsCheck = error
+
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
