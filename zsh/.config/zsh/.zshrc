@@ -64,9 +64,21 @@ setopt interactivecomments
 ###
 
 # Don't beep.
-setopt nobeep
+unsetopt beep
 
 ###
+
+
+# The following lines were added by compinstall
+zstyle ':completion:*' completer _expand _complete _ignored _correct _approximate
+zstyle :compinstall filename "'$ZDOTDIR/.zshrc'"
+
+autoload -Uz compinit
+compinit
+# End of lines added by compinstall
+
+# Auto-complete hidden files
+_comp_options+=(globdots)
 
 # Enable color support
 autoload -U colors && colors
