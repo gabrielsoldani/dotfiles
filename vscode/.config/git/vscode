@@ -1,0 +1,9 @@
+# https://code.visualstudio.com/docs/editor/versioncontrol#_vs-code-as-git-editor
+[core]
+    editor = "code --wait"
+
+[diff]
+    tool = default-difftool
+
+[difftool "default-difftool"]
+    cmd = "code --wait --diff $LOCAL $REMOTE"
