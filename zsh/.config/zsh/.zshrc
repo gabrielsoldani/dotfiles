@@ -71,4 +71,5 @@ setopt nobeep
 # Enable color support
 autoload -U colors && colors
 
+zsh_source_if_exists "$ZDOTDIR/zshrc/direnv.zsh"
 zsh_source_if_exists "$ZDOTDIR/zshrc/starship.zsh"
