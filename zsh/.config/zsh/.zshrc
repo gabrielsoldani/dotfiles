@@ -44,7 +44,7 @@ setopt nomatch
 # History
 ###
 
-HISTFILE="$HOME/.zsh_history"
+HISTFILE="$HOME/.histfile"
 HISTSIZE=10000
 SAVEHIST=10000
 
