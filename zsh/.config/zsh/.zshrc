@@ -85,3 +85,10 @@ autoload -U colors && colors
 
 zsh_source_if_exists "$ZDOTDIR/zshrc/direnv.zsh"
 zsh_source_if_exists "$ZDOTDIR/zshrc/starship.zsh"
+
+file="zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+{ command -v "brew" >/dev/null 2>&1 \
+    && zsh_source_if_exists "$(brew --prefix)/$file"; } \
+    || zsh_source_if_exists "/usr/local/share/$file" \
+    || zsh_source_if_exists "/usr/share/$file"
+unset file
