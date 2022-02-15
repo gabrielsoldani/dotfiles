@@ -12,8 +12,8 @@
 	autoStash = true
 
 [pull]
-    # Instead of merging, rebase interactively when pulling.
-	rebase = interactive
+    # Instead of merging, rebase when pulling.
+	rebase = true
 
 [rebase]
     # Automatically squash fixups, squashes and amends when rebasing.
