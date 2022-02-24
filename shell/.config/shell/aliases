@@ -1,0 +1,7 @@
+# shellcheck shell=sh
+
+# Handy `ls` aliases.
+# FIXME: How portable are these?
+alias ll="ls -alF"
+alias la="ls -A"
+alias l="ls -CF"

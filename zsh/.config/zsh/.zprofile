@@ -1,2 +1,7 @@
-# shellcheck shell=zsh
-zsh_source_if_exists "$ZDOTDIR/zprofile/brew.zsh"
+# shellcheck shell=sh
+
+# By default zsh doesn't source .profile.
+if [ -f "$HOME/.profile" ]; then
+  source "$HOME/.profile"
+fi
+

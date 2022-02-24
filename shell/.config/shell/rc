@@ -1,0 +1,15 @@
+# shellcheck shell=sh
+
+# In POSIX Compatibility Mode, the shell will not keep this function in the
+# environment from .profile.
+shell_source_if_exists () {
+  [ -f "$SHELLDOTDIR/$1" ] && . "$SHELLDOTDIR/$1"
+}
+
+# Aliases
+shell_source_if_exists "aliases"
+shell_source_if_exists "coreutils/aliases"
+shell_source_if_exists "git/aliases"
+
+# Interactive-only scripts
+shell_source_if_exists "coreutils/rc"

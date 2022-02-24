@@ -83,12 +83,8 @@ _comp_options+=(globdots)
 # Enable color support
 autoload -U colors && colors
 
-# Aliases
-zsh_source_if_exists "$ZDOTDIR/aliasrc"
-
-zsh_source_if_exists "$ZDOTDIR/zshrc/git.zsh"
-zsh_source_if_exists "$ZDOTDIR/zshrc/direnv.zsh"
-zsh_source_if_exists "$ZDOTDIR/zshrc/starship.zsh"
+zsh_source_if_exists "direnv/rc"
+zsh_source_if_exists "starship/rc"
 
 file="zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 { command -v "brew" >/dev/null 2>&1 \
