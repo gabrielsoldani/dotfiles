@@ -1,0 +1,22 @@
+# shellcheck shell=sh
+
+# With brew, commands also provided by macOS and the commands dir, dircolors and
+# vdir are installed with the prefix "g". To use them instead of their macOS
+# counterparts, add "gnubin" to the PATH.
+if [ "$(uname)" = "Darwin" ]; then
+    if command -v brew >/dev/null 2>&1; then
+        PATH="$(brew --prefix)/opt/coreutils/libexec/gnubin:$PATH"
+        export PATH
+    fi
+fi
+
+# Enable color support for `ls`.
+if command -v dircolors >/dev/null 2>&1; then
+    if [ -r "$HOME/.dircolors" ]; then
+        eval "$(dircolors -b "$HOME/.dircolors")"
+    else
+        eval "$(dircolors -b)"
+    fi
+else
+    echo "dircolors is not installed" >&2
+fi
