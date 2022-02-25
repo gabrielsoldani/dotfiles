@@ -1,7 +1,7 @@
-# shellcheck shell=sh
+# shellcheck shell=zsh
 
 # By default zsh doesn't source .profile.
 if [ -f "$HOME/.profile" ]; then
-  source "$HOME/.profile"
+  . "$HOME/.profile"
 fi
 

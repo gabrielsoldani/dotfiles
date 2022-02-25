@@ -1,2 +1,2 @@
-# shellcheck shell=sh
+# shellcheck shell=zsh
 eval "$(direnv hook zsh)"

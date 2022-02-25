@@ -1,8 +1,6 @@
 # shellcheck shell=sh
 
-SHELLDOTDIR=${XDG_CONFIG_HOME:-$HOME/.config}/shell
-export SHELLDOTDIR
-
+export SHELLDOTDIR="${XDG_CONFIG_HOME:-$HOME/.config}/shell"
 # shellcheck source=.config/shell/profile
 . "$SHELLDOTDIR/profile"
 
