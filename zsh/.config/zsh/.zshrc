@@ -1,5 +1,7 @@
 # shellcheck shell=zsh
 
+. "$SHELLDOTDIR/rc"
+
 ###
 # Changing directories
 ###
