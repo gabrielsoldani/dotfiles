@@ -88,18 +88,5 @@ autoload -U colors && colors
 zsh_source_if_exists "direnv/rc"
 zsh_source_if_exists "starship/rc"
 
-file="zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
-{ command -v "brew" >/dev/null 2>&1 \
-    && zsh_source_if_exists "$(brew --prefix)/share/$file"; } \
-    || zsh_source_if_exists "/usr/local/share/$file" \
-    || zsh_source_if_exists "/usr/share/$file" \
-    || echo "zsh-syntax-highlighting is not installed" >&2
-unset file
-
-file="zsh-autosuggestions/zsh-autosuggestions.zsh"
-{ command -v "brew" >/dev/null 2>&1 \
-    && zsh_source_if_exists "$(brew --prefix)/$file"; } \
-    || zsh_source_if_exists "/usr/local/share/$file" \
-    || zsh_source_if_exists "/usr/share/$file" \
-    || echo "zsh-autosuggestions is not installed" >&2
-unset file
+zsh_load_plugin "zsh-syntax-highlighting"
+zsh_load_plugin "zsh-autosuggestions"
