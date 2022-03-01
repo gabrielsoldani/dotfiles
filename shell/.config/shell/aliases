@@ -1,5 +1,12 @@
 # shellcheck shell=sh
 
+# Enable colors.
+# FIXME: How portable is this?
+alias ls="ls --color=auto"
+alias grep='grep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias egrep='egrep --color=auto'
+
 # Handy `ls` aliases.
 # FIXME: How portable are these?
 alias ll="ls -alF"

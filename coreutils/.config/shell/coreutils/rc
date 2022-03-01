@@ -7,6 +7,8 @@ if [ "$(uname)" = "Darwin" ]; then
     if command -v brew >/dev/null 2>&1; then
         PATH="$(brew --prefix)/opt/coreutils/libexec/gnubin:$PATH"
         export PATH
+    else
+        echo "brew is not installed" >&2
     fi
 fi
 
