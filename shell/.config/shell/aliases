@@ -5,3 +5,10 @@
 alias ll="ls -alF"
 alias la="ls -A"
 alias l="ls -CF"
+
+# Always be verbose and print which files were affected and, before overwriting
+# or replacing a file, ask for confirmation.
+# NOTE: The verbosity flag (-v) is not defined by POSIX.
+alias cp="cp -iv"
+alias mv="mv -iv"
+alias rm="rm -iv"
