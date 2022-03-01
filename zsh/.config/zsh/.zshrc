@@ -90,7 +90,8 @@ zsh_source_if_exists "starship/rc"
 
 file="zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 { command -v "brew" >/dev/null 2>&1 \
-    && zsh_source_if_exists "$(brew --prefix)/$file"; } \
+    && zsh_source_if_exists "$(brew --prefix)/share/$file"; } \
     || zsh_source_if_exists "/usr/local/share/$file" \
-    || zsh_source_if_exists "/usr/share/$file"
+    || zsh_source_if_exists "/usr/share/$file" \
+    || echo "zsh-syntax-highlighting is not installed" >&2
 unset file
