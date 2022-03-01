@@ -7,7 +7,10 @@
 export ENV="$SHELLDOTDIR/rc"
 
 shell_source_if_exists () {
-  [ -f "$SHELLDOTDIR/$1" ] && . "$SHELLDOTDIR/$1"
+    # If it's an absolute path, try that first.
+    [ "$1" != "${1#/}" ] && [ -f "$1" ] && . "$1" && return
+    # Otherwise, source it relative to $SHELLDOTDIR.
+    [ -f "$SHELLDOTDIR/$1" ] && . "$SHELLDOTDIR/$1"
 }
 
 shell_source_if_exists "brew/profile"

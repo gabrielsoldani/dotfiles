@@ -12,8 +12,12 @@ fi
 
 BASHDOTDIR="${XDG_CONFIG_HOME:-$HOME/.config}/bash"
 
-bash_source_if_exists () {
-  [ -f "$BASHDOTDIR/$1" ] && . "$BASHDOTDIR/$1"
+
+shell_source_if_exists () {
+    # If it's an absolute path, try that first.
+    [ "$1" != "${1#/}" ] && [ -f "$1" ] && . "$1" && return
+    # Otherwise, source it relative to $BASHDOTDIR.
+    [ -f "$BASHDOTDIR/$1" ] && . "$BASHDOTDIR/$1"
 }
 
 bash_source_if_exists "starship/rc"
