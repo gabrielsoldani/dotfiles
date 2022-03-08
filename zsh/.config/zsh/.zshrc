@@ -70,6 +70,9 @@ unsetopt beep
 
 ###
 
+zsh_source_if_exists "brew/rc"
+zsh_source_if_exists "direnv/rc"
+zsh_source_if_exists "starship/rc"
 
 # The following lines were added by compinstall
 zstyle ':completion:*' completer _expand _complete _ignored _correct _approximate
@@ -84,9 +87,6 @@ _comp_options+=(globdots)
 
 # Enable color support
 autoload -U colors && colors
-
-zsh_source_if_exists "direnv/rc"
-zsh_source_if_exists "starship/rc"
 
 zsh_load_plugin "zsh-syntax-highlighting"
 zsh_load_plugin "zsh-autosuggestions"
