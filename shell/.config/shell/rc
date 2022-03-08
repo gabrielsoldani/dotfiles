@@ -20,4 +20,5 @@ shell_source_if_exists "coreutils/aliases"
 shell_source_if_exists "git/aliases"
 
 # Scripts
+shell_source_if_exists "asdf/rc"
 shell_source_if_exists "coreutils/rc"
