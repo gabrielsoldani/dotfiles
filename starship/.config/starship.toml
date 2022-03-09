@@ -1,4 +1,3 @@
-format="$all$shell$character"
 
 [shell]
-disabled=false
+disabled = false
