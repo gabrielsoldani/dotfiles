@@ -22,3 +22,4 @@ shell_source_if_exists "git/aliases"
 # Scripts
 shell_source_if_exists "asdf/rc"
 shell_source_if_exists "coreutils/rc"
+shell_source_if_exists "pyenv/rc"
