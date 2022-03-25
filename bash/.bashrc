@@ -12,8 +12,7 @@ fi
 
 BASHDOTDIR="${XDG_CONFIG_HOME:-$HOME/.config}/bash"
 
-
-shell_source_if_exists () {
+bash_source_if_exists () {
     # If it's an absolute path, try that first.
     [ "$1" != "${1#/}" ] && [ -f "$1" ] && . "$1" && return
     # Otherwise, source it relative to $BASHDOTDIR.
