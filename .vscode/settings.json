@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "aliases": "shellscript",
+        "profile": "shellscript",
+        "rc": "shellscript",
+    }
+}
