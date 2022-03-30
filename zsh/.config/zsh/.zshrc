@@ -1,4 +1,4 @@
-# shellcheck shell=zsh
+# shellcheck shell=bash
 
 . "$SHELLDOTDIR/rc"
 
@@ -46,8 +46,11 @@ setopt nomatch
 # History
 ###
 
+# shellcheck disable=SC2034
 HISTFILE="$HOME/.histfile"
+# shellcheck disable=SC2034
 HISTSIZE=10000
+# shellcheck disable=SC2034
 SAVEHIST=10000
 
 ###

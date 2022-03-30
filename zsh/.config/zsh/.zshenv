@@ -1,13 +1,13 @@
-# shellcheck shell=zsh
+# shellcheck shell=sh
 
-function zsh_source_if_exists() {
+zsh_source_if_exists () {
     # If it's an absolute path, try that first.
     [ "$1" != "${1#/}" ] && [ -f "$1" ] && . "$1" && return
     # Otherwise, source it relative to $ZDOTDIR.
     [ -f "$ZDOTDIR/$1" ] && . "$ZDOTDIR/$1"
 }
 
-function zsh_load_plugin() {
+zsh_load_plugin () {
     zsh_source_if_exists "$ZDOTDIR/plugins/$1/$1.zsh" \
         || { command -v "brew" >/dev/null 2>&1 \
             && zsh_source_if_exists "$(brew --prefix)/share/$1/$1.zsh"; } \
