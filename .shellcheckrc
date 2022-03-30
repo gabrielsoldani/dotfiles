@@ -1,0 +1,24 @@
+# ShellCheck directives
+
+# Allow non-constant sources in `source` commands.
+# Since we use symlinks, working around this warning is very confusing for
+# no benefit.
+disable=SC1090
+
+# Disable 'not following' errors.
+# Since we use symlinks, sourcing across packages fails with a 'No such file'
+# error on development that doesn't happen on installed environments.
+disable=SC1091
+
+# Suggest adding a default case in `case` statements.
+enable=add-default-case
+
+# Suggest explicitly using -n in `[ $var ]`
+enable=avoid-nullary-conditions
+
+# Suggest `command -v` instead of `which`
+# https://pubs.opengroup.org/onlinepubs/9699919799/utilities/command.html
+enable=deprecate-which
+
+# Suggest quoting variables without metacharacters
+enable=quote-safe-variables
