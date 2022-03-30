@@ -1,1 +1,4 @@
+# shellcheck shell=sh
+
+# FIXME: Try other possible directories for the `brew` binary.
 eval "$(/opt/homebrew/bin/brew shellenv)"
