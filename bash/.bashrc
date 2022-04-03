@@ -19,4 +19,5 @@ bash_source_if_exists () {
     [ -f "$BASHDOTDIR/$1" ] && . "$BASHDOTDIR/$1"
 }
 
+bash_source_if_exists "dotnet/rc"
 bash_source_if_exists "starship/rc"

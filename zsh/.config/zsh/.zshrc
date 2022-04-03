@@ -75,6 +75,7 @@ unsetopt beep
 
 zsh_source_if_exists "brew/rc"
 zsh_source_if_exists "direnv/rc"
+zsh_source_if_exists "dotnet/rc"
 zsh_source_if_exists "starship/rc"
 
 # The following lines were added by compinstall

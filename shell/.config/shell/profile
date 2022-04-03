@@ -14,5 +14,6 @@ shell_source_if_exists () {
 }
 
 shell_source_if_exists "brew/profile"
+shell_source_if_exists "dotnet/profile"
 shell_source_if_exists "nano/profile"
 shell_source_if_exists "pyenv/profile"
