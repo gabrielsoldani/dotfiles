@@ -1,4 +1,10 @@
 [credential "https://github.com"]
+    # Remove all previously set credential helpers.
+    helper =
+
+    # Use the GitHub CLI Credential Helper.
     helper = "!gh auth git-credential"
+
 [credential "https://gist.github.com"]
+    helper =
     helper = "!gh auth git-credential"
