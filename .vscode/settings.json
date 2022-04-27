@@ -3,5 +3,6 @@
         "aliases": "shellscript",
         "profile": "shellscript",
         "rc": "shellscript",
+        "**/.config/git/*": "properties",
     }
 }
