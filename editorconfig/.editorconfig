@@ -10,7 +10,11 @@ insert_final_newline = true
 trim_trailing_whitespace = true
 
 [*.md]
+# Trailing whitespace is meaningful.
+# https://spec.commonmark.org/0.30/#hard-line-breaks
 trim_trailing_whitespace = false
 
 [Makefile]
+# Tabs are mandatory.
+# https://pubs.opengroup.org/onlinepubs/9699919799/utilities/make.html#tag_20_76_13_06
 indent_style = tab
