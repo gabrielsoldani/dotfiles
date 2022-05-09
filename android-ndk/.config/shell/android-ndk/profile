@@ -1,0 +1,9 @@
+# shellcheck shell=sh
+
+if [ -d "$(brew --prefix)/share/android-ndk" ]; then
+    ANDROID_NDK_HOME="$(brew --prefix)/share/android-ndk"
+    export ANDROID_NDK_HOME
+else
+    echo "android-ndk is not installed" >&2
+    return 1
+fi

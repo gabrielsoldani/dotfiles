@@ -13,7 +13,11 @@ shell_source_if_exists () {
     [ -f "$SHELLDOTDIR/$1" ] && . "$SHELLDOTDIR/$1"
 }
 
+# brew must be sourced early so that we can use `brew --prefix` in the next
+# sourced files.
 shell_source_if_exists "brew/profile"
+
+shell_source_if_exists "android-ndk/profile"
 shell_source_if_exists "dotnet/profile"
 shell_source_if_exists "nano/profile"
 shell_source_if_exists "pyenv/profile"
