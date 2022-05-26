@@ -53,6 +53,10 @@ HISTSIZE=10000
 # shellcheck disable=SC2034
 SAVEHIST=10000
 
+# Import new commands from the history file, and also appends commands
+# to the history file immediately, rather than on session exit.
+setopt sharehistory
+
 ###
 # Input/Output
 ###
