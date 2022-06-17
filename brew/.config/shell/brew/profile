@@ -1,4 +1,17 @@
 # shellcheck shell=sh
 
-# FIXME: Try other possible directories for the `brew` binary.
-eval "$(/opt/homebrew/bin/brew shellenv)"
+# Try to use Homebrew from the PATH. If it isn't available, find it
+# in common install locations.
+if ! HOMEBREW_PREFIX="$(brew --prefix 2>/dev/null)"; then
+    HOMEBREW_PREFIX="$(/opt/homebrew/bin/brew --prefix 2>/dev/null \
+        || /usr/local/bin/brew --prefix 2>/dev/null \
+        || /home/linuxbrew/.linuxbrew/bin/brew --prefix 2>/dev/null \
+        || "$HOME"/.linuxbrew/bin/brew --prefix 2>/dev/null)"
+fi
+
+if [ -z "$HOMEBREW_PREFIX" ]; then
+    err "Homebrew is not installed"
+    exit 1
+fi
+
+eval "$("$HOMEBREW_PREFIX"/bin/brew shellenv)"
