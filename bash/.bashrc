@@ -19,5 +19,15 @@ bash_source_if_exists () {
     [ -f "$BASHDOTDIR/$1" ] && . "$BASHDOTDIR/$1"
 }
 
+# Enable programmable completions.
+if [ -r "/usr/share/bash-completion/bash_completion" ]; then
+    . "/usr/share/bash-completion/bash_completion"
+elif [ -r "/etc/bash_completion" ]; then
+    . "/etc/bash_completion"
+else
+    echo "bash-completion not installed." >&2
+fi
+
+bash_source_if_exists "brew/rc"
 bash_source_if_exists "dotnet/rc"
 bash_source_if_exists "starship/rc"
