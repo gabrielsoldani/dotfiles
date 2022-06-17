@@ -9,9 +9,8 @@ if ! HOMEBREW_PREFIX="$(brew --prefix 2>/dev/null)"; then
         || "$HOME"/.linuxbrew/bin/brew --prefix 2>/dev/null)"
 fi
 
-if [ -z "$HOMEBREW_PREFIX" ]; then
-    err "Homebrew is not installed"
-    exit 1
+if [ -n "$HOMEBREW_PREFIX" ]; then
+    eval "$("$HOMEBREW_PREFIX"/bin/brew shellenv)"
+else
+    echo "brew is not installed" >&2
 fi
-
-eval "$("$HOMEBREW_PREFIX"/bin/brew shellenv)"
