@@ -1,0 +1,7 @@
+# `.stow`
+
+The presence of this file indicates that this is a *stow directory*, so Stow
+can properly fold and unfold the tree when there are [multiple stow
+directories].
+
+[multiple stow directories]: https://www.gnu.org/software/stow/manual/stow.html#Multiple-Stow-Directories
