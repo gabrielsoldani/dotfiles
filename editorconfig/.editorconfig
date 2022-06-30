@@ -6,6 +6,8 @@ charset = utf-8
 end_of_line = lf
 indent_size = 4
 indent_style = space
+# Final newline is mandatory.
+# https://pubs.opengroup.org/onlinepubs/9699919799/basedefs/V1_chap03.html#tag_03_206
 insert_final_newline = true
 trim_trailing_whitespace = true
 
