@@ -1,3 +1,4 @@
+# shellcheck shell=bash
 
 # Source common shell profile
 if [ -r "$HOME/.profile" ]; then
