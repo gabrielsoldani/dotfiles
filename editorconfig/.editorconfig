@@ -9,6 +9,14 @@ indent_style = space
 insert_final_newline = true
 trim_trailing_whitespace = true
 
+
+[*.{yaml,yml}]
+indent_size = 2
+# Spaces are mandatory.
+# https://yaml.org/spec/1.2.2/#61-indentation-spaces
+indent_style = space
+
+
 [*.md]
 # Trailing whitespace is meaningful.
 # https://spec.commonmark.org/0.30/#hard-line-breaks
