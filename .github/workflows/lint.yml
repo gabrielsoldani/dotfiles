@@ -12,4 +12,4 @@ jobs:
       uses: ludeeus/action-shellcheck@203a3fd018dfe73f8ae7e3aa8da2c149a5f41c33
       with:
         additional_files: 'aliases profile rc'
-        ignore_names: '.shellcheckrc'
+        ignore_names: '.shellcheckrc .stowrc'
