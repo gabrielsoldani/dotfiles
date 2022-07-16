@@ -1,0 +1,22 @@
+# shellcheck shell=sh
+
+# Make using my cool rules.
+alias m='make -f ${XDG_CONFIG_HOME:-$HOME/.config}/make/makefile'
+
+mw () {
+    echo "Watching..."
+    while true; do
+        # shellcheck disable=SC2048,SC2086
+        m -q $* || m $*
+        sleep 1
+    done
+}
+
+makew () {
+    echo "Watching..."
+    while true; do
+        # shellcheck disable=SC2048,SC2086
+        make -q $* || make $*
+        sleep 1
+    done
+}
