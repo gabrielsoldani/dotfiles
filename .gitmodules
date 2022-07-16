@@ -1,0 +1,3 @@
+[submodule "pandoc/.local/share/pandoc"]
+	path = pandoc/.local/share/pandoc
+	url = https://github.com/gabrielsoldani/.pandoc.git
