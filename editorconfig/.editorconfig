@@ -24,7 +24,13 @@ indent_style = space
 # https://spec.commonmark.org/0.30/#hard-line-breaks
 trim_trailing_whitespace = false
 
-[Makefile]
+[{makefile,Makefile}]
+# Tabs are mandatory.
+# https://pubs.opengroup.org/onlinepubs/9699919799/utilities/make.html#tag_20_76_13_06
+indent_style = tab
+
+# Unfortunately this can't be merged into the previous section.
+[*.mk]
 # Tabs are mandatory.
 # https://pubs.opengroup.org/onlinepubs/9699919799/utilities/make.html#tag_20_76_13_06
 indent_style = tab
