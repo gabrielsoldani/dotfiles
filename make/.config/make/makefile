@@ -1,5 +1,5 @@
 m:
-	env MAKEFLAGS="$(MAKEFLAGS)" $(MAKE)
+	MAKEFLAGS="$(MAKEFLAGS)" $(MAKE)
 .PHONY: m
 
 include ~/.config/make/makefile.d/*
