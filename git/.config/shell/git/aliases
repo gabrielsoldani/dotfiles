@@ -2,4 +2,5 @@
 
 alias g="git"
 alias gs="git status"
+alias gsw="git switch"
 alias gc="git commit"
