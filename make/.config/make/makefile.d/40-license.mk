@@ -3,7 +3,7 @@
 # the year can be read from the system clock, and the name can default
 # to the user's name in git or be overwritten.
 LICENSE:
-	echo "Copyright \(c\) 2022 Gabriel Soldani" > $@
+	echo "Copyright (c) 2022 Gabriel Soldani" > $@
 	echo >> $@
 	echo "Permission to use, copy, modify, and/or distribute this software for any" >> $@
 	echo "purpose with or without fee is hereby granted, provided that the above" >> $@
