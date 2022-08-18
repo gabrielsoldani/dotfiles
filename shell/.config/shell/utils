@@ -1,0 +1,25 @@
+# shellcheck shell=sh
+
+shell_add_to_path_if_exists() {
+    if [ ! -d "$1" ]; then
+        return 1
+    fi
+
+    case ":$PATH:" in
+        *":$1:"*) :;;  # It's already there.
+        *) PATH="$1:$PATH";;  # Add it.
+    esac
+
+    return 0
+}
+
+shell_eval_if_succeeds() {
+    eval "$("$@" 2>/dev/null || echo "false")"
+}
+
+shell_source_if_exists () {
+    # If it's an absolute path, try that first.
+    [ "$1" != "${1#/}" ] && [ -f "$1" ] && . "$1" && return
+    # Otherwise, source it relative to $SHELLDOTDIR.
+    [ -f "$SHELLDOTDIR/$1" ] && . "$SHELLDOTDIR/$1"
+}

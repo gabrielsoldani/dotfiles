@@ -6,21 +6,9 @@
 # https://pubs.opengroup.org/onlinepubs/9699919799/utilities/sh.html
 export ENV="$SHELLDOTDIR/rc"
 
-shell_add_to_path() {
-    case ":$PATH:" in
-        *":$1:"*) :;;  # It's already there.
-        *) PATH="$1:$PATH";;  # Add it.
-    esac
-}
+. "$SHELLDOTDIR/utils"
 
-shell_add_to_path "$HOME/.local/bin"
-
-shell_source_if_exists () {
-    # If it's an absolute path, try that first.
-    [ "$1" != "${1#/}" ] && [ -f "$1" ] && . "$1" && return
-    # Otherwise, source it relative to $SHELLDOTDIR.
-    [ -f "$SHELLDOTDIR/$1" ] && . "$SHELLDOTDIR/$1"
-}
+shell_add_to_path_if_exists "$HOME/.local/bin"
 
 # brew must be sourced early so that we can use `brew --prefix` in the next
 # sourced files.
