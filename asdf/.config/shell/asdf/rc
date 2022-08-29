@@ -1,5 +1,7 @@
 # shellcheck shell=sh
 
-{ command -v "brew" >/dev/null 2>&1 \
-    && shell_source_if_exists "$(brew --prefix)/opt/asdf/libexec/asdf.sh"; } \
-    || echo "asdf is not installed" >&2
+if ! { command -v brew >/dev/null 2>&1 \
+    && shell_source_if_exists "$(brew --prefix)/opt/asdf/libexec/asdf.sh"; } then
+    echo "asdf is not installed" >&2
+    return 1
+fi

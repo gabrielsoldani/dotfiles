@@ -1,7 +1,8 @@
 # shellcheck shell=sh
 
-if ! { shell_add_to_path_if_exists "$HOME/.pyenv/bin" \
-    && shell_eval_if_succeeds pyenv init --path; } then
+shell_add_to_path_if_exists "$HOME/.pyenv/bin"
+
+if ! shell_eval_if_succeeds pyenv init --path; then
     echo "pyenv could not be initialized" >&2
     return 1
 fi

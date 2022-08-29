@@ -14,12 +14,23 @@ shell_add_to_path_if_exists() {
 }
 
 shell_eval_if_succeeds() {
-    eval "$("$@" 2>/dev/null || echo "false")"
+    if eval "$("$@" 2>/dev/null || echo false)"; then
+        return 0
+    fi
+
+    return 1
 }
 
 shell_source_if_exists () {
     # If it's an absolute path, try that first.
-    [ "$1" != "${1#/}" ] && [ -f "$1" ] && . "$1" && return
+    if [ "$1" != "${1#/}" ] && [ -f "$1" ] && . "$1"; then
+        return 0
+    fi
+
     # Otherwise, source it relative to $SHELLDOTDIR.
-    [ -f "$SHELLDOTDIR/$1" ] && . "$SHELLDOTDIR/$1"
+    if [ -f "$SHELLDOTDIR/$1" ] && . "$SHELLDOTDIR/$1"; then
+        return 0
+    fi
+
+    return 1
 }

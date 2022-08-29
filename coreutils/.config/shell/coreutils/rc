@@ -5,20 +5,15 @@
 # counterparts, add "gnubin" to the PATH.
 if [ "$(uname)" = "Darwin" ]; then
     if command -v brew >/dev/null 2>&1; then
-        PATH="$(brew --prefix)/opt/coreutils/libexec/gnubin:$PATH"
-        export PATH
+        shell_add_to_path_if_exists "$(brew --prefix)/opt/coreutils/libexec/gnubin"
     else
         echo "brew is not installed" >&2
     fi
 fi
 
 # Enable color support for `ls`.
-if command -v dircolors >/dev/null 2>&1; then
-    if [ -r "$HOME/.dircolors" ]; then
-        eval "$(dircolors -b "$HOME/.dircolors")"
-    else
-        eval "$(dircolors -b)"
-    fi
-else
+if ! { shell_eval_if_succeeds dircolors -b "$HOME/.dircolors" \
+    || shell_eval_if_succeeds dircolors -b; } then
     echo "dircolors is not installed" >&2
+    return 1
 fi
