@@ -80,6 +80,8 @@ unsetopt beep
 # Aliases
 zsh_source_if_exists "git/aliases"
 
+# Scripts
+zsh_source_if_exists "asdf/rc"
 zsh_source_if_exists "brew/rc"
 zsh_source_if_exists "direnv/rc"
 zsh_source_if_exists "dotnet/rc"

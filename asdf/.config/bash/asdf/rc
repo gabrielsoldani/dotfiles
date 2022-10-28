@@ -1,0 +1,8 @@
+# shellcheck shell=bash
+
+# This is usually appended to .bashrc when
+#     asdf direnv setup --shell bash --version system
+# is run.
+if [ -f "${XDG_CONFIG_HOME:-$HOME/.config}/asdf-direnv/bashrc" ]; then
+    . "${XDG_CONFIG_HOME:-$HOME/.config}/asdf-direnv/bashrc"
+fi

@@ -1,0 +1,8 @@
+# shellcheck shell=sh
+
+# This is usually appended to .zshrc when
+#     asdf direnv setup --shell zsh --version system
+# is run.
+if [ -f "${XDG_CONFIG_HOME:-$HOME/.config}/asdf-direnv/zshrc" ]; then
+    . "${XDG_CONFIG_HOME:-$HOME/.config}/asdf-direnv/zshrc"
+fi
