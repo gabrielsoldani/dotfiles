@@ -7,7 +7,7 @@
 #        Figure out what's happening and make it work.
 #        Curiously, bash symlinked to `sh` doesn't have this problem.
 if [ "$POSIXLY_CORRECT" = "y" ]; then
-  return
+    return
 fi
 
 BASHDOTDIR="${XDG_CONFIG_HOME:-$HOME/.config}/bash"
