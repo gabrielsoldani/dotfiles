@@ -56,6 +56,8 @@ stow_shell() {
     move_if_needed "$HOME/.profile" || return 1
 
     stow -R shell
+
+    git update-index --skip-worktree "shell/.profile"
 }
 
 maybe_stow_bash() {
