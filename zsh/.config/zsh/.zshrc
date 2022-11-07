@@ -88,7 +88,7 @@ zsh_source_if_exists "dotnet/rc"
 zsh_source_if_exists "starship/rc"
 
 # The following lines were added by compinstall
-zstyle ':completion:*' completer _expand _complete _ignored _correct _approximate
+zstyle ':completion:*' completer _expand_alias _expand _complete _ignored _correct _approximate
 zstyle :compinstall filename "'$ZDOTDIR/.zshrc'"
 
 autoload -Uz compinit
