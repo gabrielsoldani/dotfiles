@@ -19,6 +19,10 @@
     # Instead of merging, rebase when pulling.
 	rebase = true
 
+[push]
+    # If no upstream tracking exists, push to the same branch name.
+    autoSetupRemote = true
+
 [rebase]
     # Automatically squash fixups, squashes and amends when rebasing.
 	autoSquash = true
