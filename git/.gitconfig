@@ -1,0 +1,10 @@
+# Machine-specific settings go here.
+#
+# Git will read from $XDG_CONFIG_HOME/git/config if it exists, but will
+# override it with $HOME/.gitconfig if it exists. Git will write to
+# $HOME/.gitconfig if it exists, making it perfect for machine-specific
+# settings.
+# https://git-scm.com/docs/git-config#Documentation/git-config.txt-XDGCONFIGHOMEgitconfig
+#
+# To make sure git doesn't track machine-specific settings, run
+#    git update-index --skip-worktree git/.gitconfig
