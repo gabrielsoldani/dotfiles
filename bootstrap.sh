@@ -55,9 +55,11 @@ move_if_needed() {
 stow_shell() {
     move_if_needed "$HOME/.profile" || return 1
 
-    stow -R shell
+    stow -R shell || return 1
 
-    git update-index --skip-worktree "shell/.profile"
+    if command_exists git; then
+        git update-index --skip-worktree "shell/.profile"
+    fi
 }
 
 maybe_stow_bash() {
@@ -68,7 +70,7 @@ maybe_stow_bash() {
     move_if_needed "$HOME/.bash_profile" || return 1
     move_if_needed "$HOME/.bashrc" || return 1
 
-    stow -R bash
+    stow -R bash || return 1
 }
 
 maybe_stow_brew() {
@@ -76,7 +78,7 @@ maybe_stow_brew() {
         return 0
     fi
 
-    stow -R brew
+    stow -R brew || return 1
 }
 
 maybe_stow_zsh() {
@@ -87,7 +89,7 @@ maybe_stow_zsh() {
     move_if_needed "$HOME/.zshenv" || return 1
     move_if_needed "$HOME/.zshrc" || return 1
 
-    stow -R zsh
+    stow -R zsh || return 1
 }
 
 maybe_stow_git() {
