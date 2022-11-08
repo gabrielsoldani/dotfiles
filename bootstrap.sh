@@ -90,8 +90,22 @@ maybe_stow_zsh() {
     stow -R zsh
 }
 
+maybe_stow_git() {
+    if ! command_exists git; then
+        return 0
+    fi
+
+    move_if_needed "$HOME/.gitconfig" || return 1
+
+    stow -R git || return 1
+
+    git update-index --skip-worktree "git/.gitconfig" || return 1
+}
+
 maybe_install_stow \
     && stow_shell \
     && maybe_stow_bash \
     && maybe_stow_brew \
-    && maybe_stow_zsh
+    && maybe_stow_zsh \
+    && maybe_stow_git \
+    && echo "Bootstrapping complete"
