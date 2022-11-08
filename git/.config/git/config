@@ -27,7 +27,7 @@
 	autoStash = true
 
     # Report an error if commits are missing from the todo list.
-    # Be explicit: use `drop` instead.
+    # If you want to drop a commit, be explicit and use `drop` instead.
 	missingCommitsCheck = error
 
 [alias]
