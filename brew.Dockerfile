@@ -19,5 +19,5 @@ COPY . /dotfiles
 WORKDIR /dotfiles
 RUN ./bootstrap.sh
 
-ENTRYPOINT ["/bin/bash", "--login", "-c"]
-CMD ["/bin/bash"]
+ENTRYPOINT ["/bin/zsh", "--login", "-c"]
+CMD ["/bin/zsh"]
