@@ -4,38 +4,13 @@ command_exists() {
     command -v "$1" >/dev/null 2>&1
 }
 
-
-# Install packages using the available package manager. Homebrew is
-# preferred.
-needs_update=true
-install_package() {
-    # Try to initialize Homebrew. This is useful if this script runs
-    # just after installing Homebrew, but before Homebrew's dotfiles
-    # are stow'd.
-    . "brew/.config/shell/brew/profile"
-
-    if command_exists brew; then
-        [ "$needs_update" = true ] && brew update && needs_update=false
-        brew install "$@"
-    elif command_exists apt-get; then
-        [ "$needs_update" = true ] && sudo apt-get update && needs_update=false
-        sudo apt-get install -y "$@"
+# Only run sudo if we're not root.
+as_root() {
+    if [ "$(id -u)" -ne "0" ]; then
+        command sudo "$@"
     else
-        echo "No package manager found" >&2
-        return 1
+        "$@"
     fi
-}
-
-
-# Install stow if isn't already installed.
-maybe_install_stow() {
-    if command_exists stow; then
-        return 0
-    fi
-
-    install_package stow
-
-    command_exists stow
 }
 
 ensure_file_does_not_exist() {
@@ -50,6 +25,39 @@ ensure_file_does_not_exist() {
 
     echo "'$1' could not be moved" >&2
     return 1
+}
+
+install_packages() {
+    # Try to initialize Homebrew. This is useful if this script runs
+    # just after installing Homebrew, but before Homebrew's dotfiles
+    # are stow'd, so running `brew` will fail.
+    . "brew/.config/shell/brew/profile" 2>/dev/null
+
+    if command_exists brew; then
+        echo "Installing packages using Homebrew..."
+        if ! { brew update && brew bundle --file=Brewfile; } then
+            echo "Homebrew could not install all packages." >&2
+            return 1
+        fi
+    elif command_exists apt-get; then
+        echo "Installing packages using apt-get..."
+        if ! { as_root apt-get update \
+            && as_root xargs -a apt-packages.txt apt-get install -y; } then
+            echo "apt could not install all packages." >&2
+            return 1
+        fi
+    elif command_exists apk; then
+        echo "Installing packages using apk..."
+        if ! { as_root apk update \
+            && as_root xargs -a apk-packages.txt apk -v add; } then
+            echo "apk could not install all packages." >&2
+            return 1
+        fi
+    else
+        echo "No package manager found" >&2
+        return 1
+    fi
+    echo "Successfully installed packages."
 }
 
 stow_shell() {
@@ -112,7 +120,7 @@ maybe_stow_git() {
     git update-index --skip-worktree "git/.gitconfig" || return 1
 }
 
-maybe_install_stow \
+install_packages \
     && stow_shell \
     && maybe_stow_bash \
     && maybe_stow_brew \

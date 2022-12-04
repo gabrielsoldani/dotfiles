@@ -1,0 +1,11 @@
+bash
+curl
+git
+htop
+neofetch
+rsync
+tree
+stow
+zsh
+zsh-autosuggestions
+zsh-syntax-highlighting
