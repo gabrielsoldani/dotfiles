@@ -81,6 +81,14 @@ maybe_stow_brew() {
     stow -R brew || return 1
 }
 
+maybe_stow_starship() {
+    if ! command_exists starship; then
+        return 0
+    fi
+
+    stow -R starship || return 1
+}
+
 maybe_stow_zsh() {
     if ! command_exists zsh; then
         return 0
@@ -108,6 +116,7 @@ maybe_install_stow \
     && stow_shell \
     && maybe_stow_bash \
     && maybe_stow_brew \
+    && maybe_stow_starship \
     && maybe_stow_zsh \
     && maybe_stow_git \
     && echo "Bootstrapping complete"
