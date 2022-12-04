@@ -38,7 +38,7 @@ maybe_install_stow() {
     command_exists stow
 }
 
-move_if_needed() {
+ensure_file_does_not_exist() {
     if [ ! -f "$1" ] || [ -L "$1" ]; then
         return 0
     fi
@@ -53,7 +53,7 @@ move_if_needed() {
 }
 
 stow_shell() {
-    move_if_needed "$HOME/.profile" || return 1
+    ensure_file_does_not_exist "$HOME/.profile" || return 1
 
     stow -R shell || return 1
 
@@ -67,8 +67,8 @@ maybe_stow_bash() {
         return 0
     fi
 
-    move_if_needed "$HOME/.bash_profile" || return 1
-    move_if_needed "$HOME/.bashrc" || return 1
+    ensure_file_does_not_exist "$HOME/.bash_profile" || return 1
+    ensure_file_does_not_exist "$HOME/.bashrc" || return 1
 
     stow -R bash || return 1
 }
@@ -86,8 +86,8 @@ maybe_stow_zsh() {
         return 0
     fi
 
-    move_if_needed "$HOME/.zshenv" || return 1
-    move_if_needed "$HOME/.zshrc" || return 1
+    ensure_file_does_not_exist "$HOME/.zshenv" || return 1
+    ensure_file_does_not_exist "$HOME/.zshrc" || return 1
 
     stow -R zsh || return 1
 }
@@ -97,7 +97,7 @@ maybe_stow_git() {
         return 0
     fi
 
-    move_if_needed "$HOME/.gitconfig" || return 1
+    ensure_file_does_not_exist "$HOME/.gitconfig" || return 1
 
     stow -R git || return 1
 
