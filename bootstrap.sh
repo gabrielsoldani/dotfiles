@@ -33,6 +33,16 @@ install_packages() {
     # are stow'd, so running `brew` will fail.
     . "brew/.config/shell/brew/profile" 2>/dev/null
 
+    if command_exists winget.exe; then
+        echo "Installing packages using winget..."
+        if ! winget.exe import -i winget-packages.jsonc \
+             --accept-package-agreements --accept-source-agreements; then
+            echo "winget could not install all packages." >&2
+            return 1
+        fi
+        echo "Successfully installed packages."
+    fi
+
     if command_exists brew; then
         echo "Installing packages using Homebrew..."
         if ! { brew update && brew bundle --file=Brewfile; } then
