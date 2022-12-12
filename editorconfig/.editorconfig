@@ -18,6 +18,9 @@ indent_size = 2
 # https://yaml.org/spec/1.2.2/#61-indentation-spaces
 indent_style = space
 
+[*.{json,jsonc}]
+indent_size = 2
+indent_style = space
 
 [*.md]
 # Trailing whitespace is meaningful.
