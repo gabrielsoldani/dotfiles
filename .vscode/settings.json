@@ -1,8 +1,8 @@
 {
-    "files.associations": {
-        "aliases": "shellscript",
-        "profile": "shellscript",
-        "rc": "shellscript",
-        "**/.config/git/*": "properties",
-    }
+  "files.associations": {
+    "aliases": "shellscript",
+    "profile": "shellscript",
+    "rc": "shellscript",
+    "**/.config/git/*": "properties"
+  }
 }
