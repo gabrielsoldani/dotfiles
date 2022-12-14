@@ -11,5 +11,21 @@ detect_files = [
     "pyproject.toml",
     "requirements.txt",
     "setup.py",
-    "tox.ini"
+    "tox.ini",
 ]
+
+# [battery]
+# full_symbol = "• "
+# charging_symbol = "⇡ "
+# discharging_symbol = "⇣ "
+# unknown_symbol = "❓ "
+# empty_symbol = "❗ "
+
+[erlang]
+symbol = "ⓔ "
+
+[nodejs]
+symbol = "[⬢](bold green) "
+
+[pulumi]
+symbol = "🧊 "
