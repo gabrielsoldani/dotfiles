@@ -19,3 +19,10 @@ alias l="ls -CF"
 alias cp="cp -iv"
 alias mv="mv -iv"
 alias rm="rm -iv"
+
+# Open a file or URL using the default application.
+if ! command -v open >/dev/null 2>&1; then
+    if command -v xdg-open >/dev/null 2>&1; then
+        alias open="xdg-open"
+    fi
+fi
