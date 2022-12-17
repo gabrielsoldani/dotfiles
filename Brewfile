@@ -14,7 +14,7 @@ brew "gawk"
 brew "gh"
 brew "git"
 brew "gnu-sed"
-brew "gnupg"
+brew "gnupg" if OS.mac?
 brew "htop"
 brew "imagemagick"
 brew "lf"
