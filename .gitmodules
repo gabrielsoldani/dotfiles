@@ -1,3 +1,9 @@
 [submodule "pandoc/.local/share/pandoc"]
 	path = pandoc/.local/share/pandoc
 	url = https://github.com/gabrielsoldani/.pandoc.git
+[submodule "zsh/.config/zsh/plugins/zsh-autosuggestions"]
+	path = zsh/.config/zsh/plugins/zsh-autosuggestions
+	url = https://github.com/zsh-users/zsh-autosuggestions.git
+[submodule "zsh/.config/zsh/plugins/zsh-syntax-highlighting"]
+	path = zsh/.config/zsh/plugins/zsh-syntax-highlighting
+	url = https://github.com/zsh-users/zsh-syntax-highlighting

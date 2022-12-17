@@ -35,7 +35,7 @@
 First of all, make sure you've cloned this repository to `$HOME/dotfiles`. This can be done with:
 
 ```text
-git clone https://github.com/gabrielsoldani/dotfiles "$HOME/dotfiles"
+git clone --recurse-submodules https://github.com/gabrielsoldani/dotfiles "$HOME/dotfiles"
 ```
 
 Every immediate child directory in this repository is a Stow package.

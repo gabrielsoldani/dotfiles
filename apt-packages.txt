@@ -7,5 +7,3 @@ rsync
 tree
 stow
 zsh
-zsh-autosuggestions
-zsh-syntax-highlighting

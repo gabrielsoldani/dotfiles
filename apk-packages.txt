@@ -8,5 +8,3 @@ tree
 starship
 stow
 zsh
-zsh-autosuggestions
-zsh-syntax-highlighting
