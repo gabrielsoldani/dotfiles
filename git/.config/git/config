@@ -35,7 +35,8 @@
 	missingCommitsCheck = error
 
 [alias]
-    stash-all = stash --include-untracked
+    root = "rev-parse --show-toplevel"
+    stash-all = "stash --include-untracked"
 
 [filter "lfs"]
 	clean = git-lfs clean -- %f
