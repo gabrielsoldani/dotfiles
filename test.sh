@@ -1,6 +1,7 @@
 #!/bin/sh
 # Runs test environments.
 # Usage: ./test.sh {apt|apk|brew}
+set -e
 
 TEST_SH=$(basename "$0")
 IID_FILE=$(mktemp)

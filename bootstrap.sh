@@ -1,4 +1,5 @@
 #!/bin/sh
+set -e
 
 command_exists() {
     command -v "$1" >/dev/null 2>&1
@@ -71,9 +72,9 @@ install_packages() {
 }
 
 stow_shell() {
-    ensure_file_does_not_exist "$HOME/.profile" || return 1
+    ensure_file_does_not_exist "$HOME/.profile"
 
-    stow -R shell || return 1
+    stow -R shell
 
     if command_exists git; then
         git update-index --skip-worktree "shell/.profile"
@@ -85,10 +86,10 @@ maybe_stow_bash() {
         return 0
     fi
 
-    ensure_file_does_not_exist "$HOME/.bash_profile" || return 1
-    ensure_file_does_not_exist "$HOME/.bashrc" || return 1
+    ensure_file_does_not_exist "$HOME/.bash_profile"
+    ensure_file_does_not_exist "$HOME/.bashrc"
 
-    stow -R bash || return 1
+    stow -R bash
 }
 
 maybe_stow_brew() {
@@ -96,7 +97,7 @@ maybe_stow_brew() {
         return 0
     fi
 
-    stow -R brew || return 1
+    stow -R brew
 }
 
 maybe_stow_starship() {
@@ -104,7 +105,7 @@ maybe_stow_starship() {
         return 0
     fi
 
-    stow -R starship || return 1
+    stow -R starship
 }
 
 maybe_stow_zsh() {
@@ -112,10 +113,10 @@ maybe_stow_zsh() {
         return 0
     fi
 
-    ensure_file_does_not_exist "$HOME/.zshenv" || return 1
-    ensure_file_does_not_exist "$HOME/.zshrc" || return 1
+    ensure_file_does_not_exist "$HOME/.zshenv"
+    ensure_file_does_not_exist "$HOME/.zshrc"
 
-    stow -R zsh || return 1
+    stow -R zsh
 }
 
 maybe_stow_git() {
@@ -123,18 +124,20 @@ maybe_stow_git() {
         return 0
     fi
 
-    ensure_file_does_not_exist "$HOME/.gitconfig" || return 1
+    ensure_file_does_not_exist "$HOME/.gitconfig"
 
-    stow -R git || return 1
+    stow -R git
 
-    git update-index --skip-worktree "git/.gitconfig" || return 1
+    git update-index --skip-worktree "git/.gitconfig"
 }
 
-install_packages \
-    && stow_shell \
-    && maybe_stow_bash \
-    && maybe_stow_brew \
-    && maybe_stow_starship \
-    && maybe_stow_zsh \
-    && maybe_stow_git \
-    && echo "Bootstrapping complete"
+install_packages
+stow_shell
+
+maybe_stow_bash
+maybe_stow_brew
+maybe_stow_starship
+maybe_stow_zsh
+maybe_stow_git
+
+echo "Bootstrapping complete"
