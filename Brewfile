@@ -41,8 +41,8 @@ brew "font-hack-nerd-font" if OS.linux?
 # Casks
 # NOTE: These are special-cased to only be installed on macOS.
 #       No need for `if OS.mac?` here.
-tap "homebrew/cask"
-cask "monitor-control"
+cask "google-chrome"
+cask "monitorcontrol"
 cask "scroll-reverser"
 cask "spotify"
 cask "visual-studio-code"
