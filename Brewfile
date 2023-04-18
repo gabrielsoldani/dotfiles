@@ -55,4 +55,3 @@ cask "zoom"
 #       is installed.
 mas "Amphetamine", id: 937984704
 mas "MeetingBar", id: 1532419400
-mas "TestFlight", id: 899247664
