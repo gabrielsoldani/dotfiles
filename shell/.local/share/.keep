@@ -1,0 +1,5 @@
+#!/bin/false
+# shellcheck shell=sh
+
+# This file is here simply so that its parent directory is not unfolded
+# by Stow.
