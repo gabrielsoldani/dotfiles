@@ -20,5 +20,6 @@ shell_source_if_exists "make/aliases"
 # Scripts
 shell_source_if_exists "asdf/rc"
 shell_source_if_exists "brew/rc"
+shell_source_if_exists "gnupg/rc"
 shell_source_if_exists "coreutils/rc"
 shell_source_if_exists "starship/rc"
