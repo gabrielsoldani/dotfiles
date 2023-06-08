@@ -1,0 +1,80 @@
+#!/bin/sh
+# A very simple wrapper around dtach(1).
+
+set -e
+VERSION="0.1.0"
+
+DT_DIR=${DT_DIR:-"$HOME/dt"}
+DT_CMD=${DT_CMD:-$SHELL}
+DT=$(basename "$0")
+
+DTACH=${DTACH:-"dtach"}
+DTACH_OPTS=${DTACH_OPTS:-"-r ctrl_l -z"}
+
+h() {
+    cat <<EOF
+Usage:
+    $DT                 # list sessions
+    $DT -l              # list sessions
+    $DT -a <name>       # attach to session
+    $DT -A <name>       # attach to session, create if it doesn't exist
+    $DT -A <name> <cmd> # attach to session, create if it doesn't exist, run <cmd>
+    $DT -c <name>       # create session, run \$DT_CMD (defaults to \$SHELL)
+    $DT -c <name> <cmd> # create session, run <cmd>
+    $DT -h              # show this help message
+    $DT -v              # show version
+EOF
+}
+
+ensure_dt_dir_exists() {
+    # shellcheck disable=SC2174
+    mkdir -p -m "a=,u=rwx" "$DT_DIR"
+}
+
+v() {
+    echo "$DT $VERSION"
+}
+
+l() {
+    ensure_dt_dir_exists
+    exec find "$DT_DIR" -maxdepth 1 -type s -exec basename {} \;
+}
+
+a() {
+    ensure_dt_dir_exists
+    # shellcheck disable=SC2086
+    exec $DTACH -a "$DT_DIR/$1" $DTACH_OPTS
+}
+
+c() {
+    ensure_dt_dir_exists
+    # shellcheck disable=SC2086
+    exec $DTACH -c "$DT_DIR/$1" $DTACH_OPTS sh -c \'"${2:-$DT_CMD}"\'
+}
+
+A() {
+    ensure_dt_dir_exists
+    # shellcheck disable=SC2086
+    exec $DTACH -A "$DT_DIR/$1" $DTACH_OPTS sh -c \'"${2:-$DT_CMD}"\'
+}
+
+# Treat empty args as -l
+if [ "$#" -eq 0 ]; then
+    set -- -l
+fi
+
+getopts "a:A:c:lhv" opt || { h >&2; exit 1; }
+[ "$opt" = "?" ] && { h >&2; exit 1; }
+case "$opt" in
+    A|c) ;;
+    *)
+        if [ "$(($#+1))" -ne "$OPTIND" ]; then
+            echo "$0: too many arguments" >&2
+            h >&2
+            exit 1
+        fi; ;;
+esac
+
+shift || true
+shift || true
+$opt "$OPTARG" "$*"
