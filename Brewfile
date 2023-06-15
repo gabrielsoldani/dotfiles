@@ -8,11 +8,11 @@ brew "asdf"
 brew "bash"
 brew "clang-format"
 brew "direnv"
+brew "dtach"
 brew "ffmpeg"
 brew "gh"
 brew "git"
 brew "htop"
-brew "lf"
 brew "neofetch"
 brew "pandoc"
 brew "rsync"
@@ -31,6 +31,7 @@ brew "coreutils" if OS.mac?
 brew "gawk" if OS.mac?
 brew "gnu-sed" if OS.mac?
 brew "gnupg" if OS.mac?
+brew "pinentry-mac" if OS.mac?
 
 # Fonts
 tap "homebrew/cask-fonts" if OS.mac?
@@ -43,6 +44,7 @@ brew "font-hack-nerd-font" if OS.linux?
 #       No need for `if OS.mac?` here.
 cask "google-chrome"
 cask "monitorcontrol"
+cask "rectangle"
 cask "scroll-reverser"
 cask "spotify"
 cask "visual-studio-code"
@@ -54,4 +56,8 @@ cask "zoom"
 # NOTE: The `mas` formula is installed automatically when a `mas` entry
 #       is installed.
 mas "Amphetamine", id: 937984704
+mas "Color Picker", id: 1545870783
 mas "MeetingBar", id: 1532419400
+mas "Hidden Bar", id: 1452453066
+mas "Speedtest", id: 1153157709
+mas "WhatsApp", id: 1147396723
