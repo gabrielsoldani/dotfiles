@@ -1,5 +1,9 @@
 # shellcheck shell=sh
 
+# Source completions, but only if installed to `$HOME/.asdf`.
+# Package managers handle completions differently.
+zsh_source_if_exists "$HOME/.asdf/completions/asdf.zsh"
+
 # This is usually appended to .zshrc when
 #     asdf direnv setup --shell zsh --version system
 # is run.

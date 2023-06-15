@@ -1,5 +1,11 @@
 # shellcheck shell=bash
 
+# shellcheck shell=sh
+
+# Source completions, but only if installed to `$HOME/.asdf`.
+# Package managers handle completions differently.
+bash_source_if_exists "$HOME/.asdf/completions/asdf.bash"
+
 # This is usually appended to .bashrc when
 #     asdf direnv setup --shell bash --version system
 # is run.
