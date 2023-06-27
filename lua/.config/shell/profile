@@ -1,0 +1,6 @@
+# shellcheck shell=sh
+
+if ! shell_eval_if_succeeds luarocks path --no-bin; then
+    echo "luarocks not installed" >&2
+    return 1
+fi

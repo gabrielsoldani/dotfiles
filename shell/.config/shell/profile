@@ -16,6 +16,7 @@ shell_source_if_exists "brew/profile"
 
 shell_source_if_exists "android-ndk/profile"
 shell_source_if_exists "dotnet/profile"
+shell_source_if_exists "lua/profile"
 shell_source_if_exists "nano/profile"
 
 # asdf must be sourced late because it wants to be in the front of the
