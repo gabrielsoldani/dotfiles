@@ -49,13 +49,13 @@ a() {
 c() {
     ensure_dt_dir_exists
     # shellcheck disable=SC2086
-    exec $DTACH -c "$DT_DIR/$1" $DTACH_OPTS sh -c \'"${2:-$DT_CMD}"\'
+    exec $DTACH -A "$DT_DIR"/"$1" $DTACH_OPTS sh -c "\$0 \$@" ${2:-$DT_CMD}
 }
 
 A() {
     ensure_dt_dir_exists
     # shellcheck disable=SC2086
-    exec $DTACH -A "$DT_DIR/$1" $DTACH_OPTS sh -c \'"${2:-$DT_CMD}"\'
+    exec $DTACH -A "$DT_DIR"/"$1" $DTACH_OPTS sh -c "\$0 \$@" ${2:-$DT_CMD}
 }
 
 # Treat empty args as -l
@@ -69,7 +69,7 @@ case "$opt" in
     A|c) ;;
     *)
         if [ "$(($#+1))" -ne "$OPTIND" ]; then
-            echo "$0: too many arguments" >&2
+            echo "$DT: too many arguments" >&2
             h >&2
             exit 1
         fi; ;;
