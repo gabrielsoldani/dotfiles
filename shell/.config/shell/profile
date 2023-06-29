@@ -14,11 +14,15 @@ shell_add_to_path_if_exists "$HOME/.local/bin"
 # sourced files.
 shell_source_if_exists "brew/profile"
 
+# asdf must be sourced early so that asdf-managed tools below are in the
+# PATH.
+shell_source_if_exists "asdf/profile"
+
 shell_source_if_exists "android-ndk/profile"
 shell_source_if_exists "dotnet/profile"
 shell_source_if_exists "lua/profile"
 shell_source_if_exists "nano/profile"
 
-# asdf must be sourced late because it wants to be in the front of the
-# PATH.
+# asdf must be sourced again to make sure asdf-managed tools have
+# precedence in the PATH.
 shell_source_if_exists "asdf/profile"
