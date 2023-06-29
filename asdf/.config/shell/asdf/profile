@@ -1,8 +1,8 @@
 # shellcheck shell=sh
 
-if { command -v brew >/dev/null 2>&1 \
-    && [ -f "$(brew --prefix asdf)/libexec/asdf.sh" ]; } then
-    ASDF_DIR="$(brew --prefix asdf)/libexec"
+if [ -n "$HOMEBREW_PREFIX" ] \
+    && [ -f "$HOMEBREW_PREFIX/opt/asdf/libexec/asdf.sh" ]; then
+    ASDF_DIR="$HOMEBREW_PREFIX/opt/asdf/libexec"
 elif [ -f "$HOME/.asdf/asdf.sh" ]; then
     ASDF_DIR="$HOME/.asdf"
 fi

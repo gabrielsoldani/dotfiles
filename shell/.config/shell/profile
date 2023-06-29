@@ -8,7 +8,7 @@ export ENV="$SHELLDOTDIR/rc"
 
 . "$SHELLDOTDIR/utils"
 
-# brew must be sourced early so that we can use `brew --prefix` in the next
+# brew must be sourced early so that we can use `$HOMEBREW_PREFIX` in the next
 # sourced files.
 shell_source_if_exists "brew/profile"
 

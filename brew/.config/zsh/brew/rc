@@ -1,8 +1,8 @@
 # shellcheck shell=sh
 
 # https://docs.brew.sh/Shell-Completion#configuring-completions-in-zsh
-if command -v brew >/dev/null 2>&1; then
-    FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
+if [ -n "$HOMEBREW_PREFIX" ]; then
+    FPATH="$HOMEBREW_PREFIX/share/zsh/site-functions:${FPATH}"
 else
     echo "brew is not installed" >&2
 fi
