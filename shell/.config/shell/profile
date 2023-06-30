@@ -18,6 +18,7 @@ shell_source_if_exists "brew/profile"
 # PATH.
 shell_source_if_exists "asdf/profile"
 
+shell_source_if_exists "1password/profile"
 shell_source_if_exists "android-ndk/profile"
 shell_source_if_exists "dotnet/profile"
 shell_source_if_exists "lua/profile"
