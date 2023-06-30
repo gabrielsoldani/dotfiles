@@ -1,7 +1,0 @@
-# shellcheck shell=sh
-
-# Prevent `gh` from using the GH_TOKEN and GITHUB_TOKEN environment
-# variables. This is desirable if these variables are set to a token
-# with more limited scopes than what `gh` needs (e.g. tools that only
-# need access to the GitHub Package Registry).
-alias gh="env -u GH_TOKEN -u GITHUB_TOKEN gh"

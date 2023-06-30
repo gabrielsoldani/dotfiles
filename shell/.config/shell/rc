@@ -13,11 +13,11 @@ fi
 shell_source_if_exists "aliases"
 shell_source_if_exists "coreutils/aliases"
 shell_source_if_exists "ffmpeg/aliases"
-shell_source_if_exists "gh/aliases"
 shell_source_if_exists "git/aliases"
 shell_source_if_exists "make/aliases"
 
 # Scripts
+shell_source_if_exists "1password/rc"
 shell_source_if_exists "brew/rc"
 shell_source_if_exists "gnupg/rc"
 shell_source_if_exists "coreutils/rc"
