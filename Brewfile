@@ -30,8 +30,6 @@ brew "m4" if OS.mac?
 brew "coreutils" if OS.mac?
 brew "gawk" if OS.mac?
 brew "gnu-sed" if OS.mac?
-brew "gnupg" if OS.mac?
-brew "pinentry-mac" if OS.mac?
 
 # Fonts
 tap "homebrew/cask-fonts" if OS.mac?
