@@ -1,0 +1,37 @@
+#!/bin/sh
+# shellcheck shell=sh
+
+# If we're running inside VS Code Insiders, use that instead of the stable
+# version.
+
+if [ "$TERM_PROGRAM" = "vscode" ]; then
+    case "$TERM_PROGRAM_VERSION" in
+        *-insider)
+            if [ -x "$HOMEBREW_PREFIX/bin/code-insiders" ]; then
+                exec "$HOMEBREW_PREFIX/bin/code-insiders" "$@"
+            elif [ -x "/usr/local/bin/code-insiders" ]; then
+                exec "/usr/local/bin/code-insiders" "$@"
+            elif [ -x "/usr/bin/code-insiders" ]; then
+                exec "/usr/bin/code-insiders" "$@"
+            elif [ -x "/bin/code-insiders" ]; then
+                exec "/bin/code-insiders" "$@"
+            fi
+            ;;
+        *)  ;;
+    esac
+fi
+
+# Otherwise, or if we couldn't find a code-insiders executable, use the stable
+# version.
+if [ -x "$HOMEBREW_PREFIX/bin/code" ]; then
+    exec "$HOMEBREW_PREFIX/bin/code" "$@"
+elif [ -x "/usr/local/bin/code" ]; then
+    exec "/usr/local/bin/code" "$@"
+elif [ -x "/usr/bin/code" ]; then
+    exec "/usr/bin/code" "$@"
+elif [ -x "/bin/code" ]; then
+    exec "/bin/code" "$@"
+else
+    echo "code not found" >&2
+    exit 1
+fi
