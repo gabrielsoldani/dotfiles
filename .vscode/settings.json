@@ -3,6 +3,7 @@
     "aliases": "shellscript",
     "profile": "shellscript",
     "rc": "shellscript",
-    "**/.config/git/*": "properties"
+    "**/.config/git/*": "properties",
+    "**/.ssh/config.d/*": "ssh_config"
   }
 }
