@@ -40,6 +40,8 @@ brew "font-hack-nerd-font" if OS.linux?
 # Casks
 # NOTE: These are special-cased to only be installed on macOS.
 #       No need for `if OS.mac?` here.
+cask "1password"
+cask "1password-cli"
 cask "google-chrome"
 cask "monitorcontrol"
 cask "rectangle"
@@ -53,6 +55,7 @@ cask "zoom"
 #       No need for `if OS.mac?` here.
 # NOTE: The `mas` formula is installed automatically when a `mas` entry
 #       is installed.
+mas "1Password for Safari", id: 1569813296
 mas "Amphetamine", id: 937984704
 mas "Color Picker", id: 1545870783
 mas "MeetingBar", id: 1532419400
