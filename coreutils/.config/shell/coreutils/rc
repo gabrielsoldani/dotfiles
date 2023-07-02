@@ -1,19 +1,21 @@
 # shellcheck shell=sh
 
-# With brew, commands also provided by macOS and the commands dir, dircolors and
-# vdir are installed with the prefix "g". To use them instead of their macOS
-# counterparts, add "gnubin" to the PATH.
+# With brew, commands also provided by macOS are installed with the prefix "g".
+# GNU also provides the commands dir, dircolors and vdir, which are missing on
+# macOS. To use the GNU commands _with_ the "g" prefix and the unprefixed dir,
+# dircolors and vdir commands, _append_ the gnubin directory to the PATH.
+# If we were to _prepend_ the gnubin directory to the PATH, the unprefixed
+# commands would shadow the built-in macOS commands.
 if [ "$(uname)" = "Darwin" ]; then
-    if command -v brew >/dev/null 2>&1; then
-        shell_add_to_path_if_exists "$(brew --prefix)/opt/coreutils/libexec/gnubin"
-    else
-        echo "brew is not installed" >&2
+    if ! PATH_try_append "$HOMEBREW_PREFIX/opt/coreutils/libexec/gnubin"; then
+        echo "coreutils: failed to add gnubin to the PATH" >&2
+        return 1
     fi
 fi
 
 # Enable color support for `ls`.
 if ! { shell_eval_if_succeeds dircolors -b "$HOME/.dircolors" \
     || shell_eval_if_succeeds dircolors -b; } then
-    echo "dircolors is not installed" >&2
+    echo "coreutils: failed to eval dircolors" >&2
     return 1
 fi

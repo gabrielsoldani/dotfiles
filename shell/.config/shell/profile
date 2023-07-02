@@ -8,8 +8,6 @@ export ENV="$SHELLDOTDIR/rc"
 
 . "$SHELLDOTDIR/utils"
 
-shell_add_to_path_if_exists "$HOME/.local/bin"
-
 # brew must be sourced early so that we can use `brew --prefix` in the next
 # sourced files.
 shell_source_if_exists "brew/profile"
@@ -27,3 +25,6 @@ shell_source_if_exists "nano/profile"
 # asdf must be sourced again to make sure asdf-managed tools have
 # precedence in the PATH.
 shell_source_if_exists "asdf/profile"
+
+# Add our own utilities last so that they have precedence in the PATH.
+PATH_try_prepend "$HOME/.local/bin"

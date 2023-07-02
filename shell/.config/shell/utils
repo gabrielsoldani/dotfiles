@@ -1,15 +1,32 @@
 # shellcheck shell=sh
 
-shell_add_to_path_if_exists() {
+PATH_try_prepend () {
+    # Expand the path to an absolute path.
+    if ! set -- "$(realpath -- "$1")"; then
+        return 1
+    fi
+
+    # Make sure it's a directory.
     if [ ! -d "$1" ]; then
         return 1
     fi
 
-    case ":$PATH:" in
-        *":$1:"*) :;;  # It's already there.
-        *) PATH="$1:$PATH";;  # Add it.
-    esac
+    # FIXME: Trim repeating paths.
+    PATH="$1:$PATH"
+    return 0
+}
 
+PATH_try_append () {
+    # Expand the path to an absolute path.
+    set -- "$(realpath -- "$1")"
+
+    # Make sure it's a directory.
+    if [ ! -d "$1" ]; then
+        return 1
+    fi
+
+    # FIXME: Trim repeating paths.
+    PATH="$PATH:$1"
     return 0
 }
 
