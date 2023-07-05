@@ -6,10 +6,13 @@
 # dircolors and vdir commands, _append_ the gnubin directory to the PATH.
 # If we were to _prepend_ the gnubin directory to the PATH, the unprefixed
 # commands would shadow the built-in macOS commands.
-if [ "$(uname)" = "Darwin" ]; then
+if [ -n "$HOMEBREW_PREFIX" ]; then
     if ! PATH_try_append "$HOMEBREW_PREFIX/opt/coreutils/libexec/gnubin"; then
-        echo "coreutils: failed to add gnubin to the PATH" >&2
-        return 1
+        # We don't want this to be an error on Linux
+        if [ "$(uname)" != "Linux" ]; then
+            echo "coreutils: failed to add gnubin to the PATH" >&2
+            return 1
+        fi
     fi
 fi
 
