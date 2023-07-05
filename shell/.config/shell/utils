@@ -30,24 +30,14 @@ PATH_try_append () {
     return 0
 }
 
-shell_eval_if_succeeds() {
-    if eval "$("$@" 2>/dev/null || echo false)"; then
-        return 0
-    fi
-
-    return 1
+has () {
+    command -v "$1" >/dev/null 2>&1
 }
 
-shell_source_if_exists () {
-    # If it's an absolute path, try that first.
-    if [ "$1" != "${1#/}" ] && [ -f "$1" ] && . "$1"; then
-        return 0
-    fi
+source_if_exists () {
+    [ -r "$1" ] && . "$1"
+}
 
-    # Otherwise, source it relative to $SHELLDOTDIR.
-    if [ -f "$SHELLDOTDIR/$1" ] && . "$SHELLDOTDIR/$1"; then
-        return 0
-    fi
-
-    return 1
+eval_output() {
+    eval "$("$@" 2>/dev/null || echo false)"
 }

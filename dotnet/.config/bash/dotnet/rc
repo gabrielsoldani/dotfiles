@@ -1,6 +1,6 @@
 # shellcheck disable=SC1000-SC9999
 
-if ! command -v dotnet >/dev/null 2>&1; then
+if ! has dotnet; then
     echo "dotnet is not installed" >&2
     return 1
 fi

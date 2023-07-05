@@ -1,6 +1,6 @@
 # shellcheck shell=bash
 
-. "$SHELLDOTDIR/rc"
+. "$SHELLDOTDIR/rc" || return 1
 
 ###
 # Changing directories
@@ -78,14 +78,14 @@ unsetopt beep
 ###
 
 # Aliases
-zsh_source_if_exists "git/aliases"
+source_if_exists "$ZDOTDIR/git/aliases"
 
 # Scripts
-zsh_source_if_exists "asdf/rc"
-zsh_source_if_exists "brew/rc"
-zsh_source_if_exists "direnv/rc"
-zsh_source_if_exists "dotnet/rc"
-zsh_source_if_exists "starship/rc"
+source_if_exists "$ZDOTDIR/asdf/rc"
+source_if_exists "$ZDOTDIR/brew/rc"
+source_if_exists "$ZDOTDIR/direnv/rc"
+source_if_exists "$ZDOTDIR/dotnet/rc"
+source_if_exists "$ZDOTDIR/starship/rc"
 
 # The following lines were added by compinstall
 zstyle ':completion:*' completer _expand_alias _expand _complete _ignored _correct _approximate
@@ -101,5 +101,10 @@ _comp_options+=(globdots)
 # Enable color support
 autoload -U colors && colors
 
-zsh_load_plugin "zsh-syntax-highlighting"
-zsh_load_plugin "zsh-autosuggestions"
+source_if_exists "$ZDOTDIR/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+source_if_exists "$ZDOTDIR/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh"
+
+# Uncomment the following line (and the corresponding one in .zprofile)
+# to enable profiling.
+# zprof
+source "${XDG_CONFIG_HOME:-$HOME/.config}/asdf-direnv/zshrc"

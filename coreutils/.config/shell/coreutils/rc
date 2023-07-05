@@ -17,8 +17,8 @@ if [ -n "$HOMEBREW_PREFIX" ]; then
 fi
 
 # Enable color support for `ls`.
-if ! { shell_eval_if_succeeds dircolors -b "$HOME/.dircolors" \
-    || shell_eval_if_succeeds dircolors -b; } then
+if ! { eval_output dircolors -b "$HOME/.dircolors" \
+    || eval_output dircolors -b; } then
     echo "coreutils: failed to eval dircolors" >&2
     return 1
 fi

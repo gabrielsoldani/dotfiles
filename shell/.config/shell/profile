@@ -6,25 +6,34 @@
 # https://pubs.opengroup.org/onlinepubs/9699919799/utilities/sh.html
 export ENV="$SHELLDOTDIR/rc"
 
-. "$SHELLDOTDIR/utils"
+. "$SHELLDOTDIR/utils" || return 1
 
 # brew must be sourced early so that we can use `$HOMEBREW_PREFIX` in the next
 # sourced files.
-shell_source_if_exists "brew/profile"
+source_if_exists "$SHELLDOTDIR/brew/profile"
 
 # asdf must be sourced early so that asdf-managed tools below are in the
 # PATH.
-shell_source_if_exists "asdf/profile"
+source_if_exists "$SHELLDOTDIR/asdf/profile"
 
-shell_source_if_exists "1password/profile"
-shell_source_if_exists "android-ndk/profile"
-shell_source_if_exists "dotnet/profile"
-shell_source_if_exists "lua/profile"
-shell_source_if_exists "nano/profile"
+source_if_exists "$SHELLDOTDIR/1password/profile"
+source_if_exists "$SHELLDOTDIR/android-ndk/profile"
+source_if_exists "$SHELLDOTDIR/dotnet/profile"
+source_if_exists "$SHELLDOTDIR/lua/profile"
+source_if_exists "$SHELLDOTDIR/nano/profile"
 
 # asdf must be sourced again to make sure asdf-managed tools have
 # precedence in the PATH.
-shell_source_if_exists "asdf/profile"
+source_if_exists "$SHELLDOTDIR/asdf/profile"
 
 # Add our own utilities last so that they have precedence in the PATH.
 PATH_try_prepend "$HOME/.local/bin"
+
+# We don't want the functions from `utils` hanging around unless we're in an
+# interactive shell, so we unset them here.
+unset -f \
+    PATH_try_prepend \
+    PATH_try_append \
+    has \
+    source_if_exists \
+    eval_output

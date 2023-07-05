@@ -2,11 +2,9 @@
 
 # Source completions, but only if installed to `$HOME/.asdf`.
 # Package managers handle completions differently.
-zsh_source_if_exists "$HOME/.asdf/completions/asdf.zsh"
+source_if_exists "$HOME/.asdf/completions/asdf.zsh"
 
 # This is usually appended to .zshrc when
 #     asdf direnv setup --shell zsh --version system
 # is run.
-if [ -f "${XDG_CONFIG_HOME:-$HOME/.config}/asdf-direnv/zshrc" ]; then
-    . "${XDG_CONFIG_HOME:-$HOME/.config}/asdf-direnv/zshrc"
-fi
+source_if_exists "${XDG_CONFIG_HOME:-$HOME/.config}/asdf-direnv/zshrc"

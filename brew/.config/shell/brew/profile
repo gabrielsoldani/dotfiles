@@ -20,12 +20,15 @@ HOMEBREW_PREFIX=${HOMEBREW_PREFIX:-"$("$HOME" --prefix 2>/dev/null)"}
 # environment set up yet, set it up.
 if [ -n "$HOMEBREW_PREFIX" ] \
     && [ -z "$HOMEBREW_CELLAR" ] \
-    && [ -z "$HOMEBREW_REPOSITORY" ]; then
-    eval "$("$HOMEBREW_PREFIX"/bin/brew shellenv)"
+    && [ -z "$HOMEBREW_REPOSITORY" ] \
+    && ! eval_output "$HOMEBREW_PREFIX/bin/brew" "shellenv"; then
+    echo "brew: failed to set up shell environment" >&2
+    return 1
 fi
 
 # By now we either have Homebrew's shell environment set up, or we can't
 # tell where it's installed.
 if [ -z "$HOMEBREW_PREFIX" ]; then
     echo "brew is not installed" >&2
+    return 1
 fi

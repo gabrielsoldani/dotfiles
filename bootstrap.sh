@@ -1,7 +1,7 @@
 #!/bin/sh
 set -e
 
-command_exists() {
+has () {
     command -v "$1" >/dev/null 2>&1
 }
 
@@ -34,7 +34,7 @@ install_packages() {
     # are stow'd, so running `brew` will fail.
     . "brew/.config/shell/brew/profile" 2>/dev/null
 
-    if command_exists winget.exe; then
+    if has winget.exe; then
         echo "Installing packages using winget..."
         if ! winget.exe import -i winget-packages.jsonc \
              --accept-package-agreements --accept-source-agreements; then
@@ -44,20 +44,20 @@ install_packages() {
         echo "Successfully installed packages."
     fi
 
-    if command_exists brew; then
+    if has brew; then
         echo "Installing packages using Homebrew..."
         if ! { brew update && brew bundle --file=Brewfile; } then
             echo "Homebrew could not install all packages." >&2
             return 1
         fi
-    elif command_exists apt-get; then
+    elif has apt-get; then
         echo "Installing packages using apt-get..."
         if ! { as_root apt-get update \
             && as_root xargs -a apt-packages.txt apt-get install -y; } then
             echo "apt could not install all packages." >&2
             return 1
         fi
-    elif command_exists apk; then
+    elif has apk; then
         echo "Installing packages using apk..."
         if ! { as_root apk update \
             && as_root xargs -a apk-packages.txt apk -v add; } then
@@ -76,13 +76,13 @@ stow_shell() {
 
     stow -R shell
 
-    if command_exists git; then
+    if has git; then
         git update-index --skip-worktree "shell/.profile"
     fi
 }
 
 maybe_stow_bash() {
-    if ! command_exists bash; then
+    if ! has bash; then
         return 0
     fi
 
@@ -93,7 +93,7 @@ maybe_stow_bash() {
 }
 
 maybe_stow_brew() {
-    if ! command_exists brew; then
+    if ! has brew; then
         return 0
     fi
 
@@ -101,7 +101,7 @@ maybe_stow_brew() {
 }
 
 maybe_stow_starship() {
-    if ! command_exists starship; then
+    if ! has starship; then
         return 0
     fi
 
@@ -109,7 +109,7 @@ maybe_stow_starship() {
 }
 
 maybe_stow_zsh() {
-    if ! command_exists zsh; then
+    if ! has zsh; then
         return 0
     fi
 
@@ -120,7 +120,7 @@ maybe_stow_zsh() {
 }
 
 maybe_stow_git() {
-    if ! command_exists git; then
+    if ! has git; then
         return 0
     fi
 

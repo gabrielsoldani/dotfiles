@@ -1,6 +1,6 @@
 # shellcheck shell=sh
 
-if ! command -v nano >/dev/null 2>&1; then
+if ! has nano; then
     echo "nano is not installed" >&2
     return 1
 fi
