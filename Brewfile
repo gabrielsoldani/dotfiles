@@ -6,6 +6,7 @@ tap "homebrew/command-not-found"
 #       Tapping it will make the script take a very long time to run.
 brew "asdf"
 brew "bash"
+brew "bash-completion@2"
 brew "clang-format"
 brew "direnv"
 brew "dtach"
