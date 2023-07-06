@@ -1,9 +1,10 @@
 {
   "files.associations": {
-    "aliases": "shellscript",
-    "profile": "shellscript",
-    "rc": "shellscript",
     "**/.config/git/*": "properties",
     "**/.ssh/config.d/*": "ssh_config"
+  },
+  "git.autoRepositoryDetection": "openEditors",
+  "search.exclude": {
+    "zsh/.config/zsh/plugins/**": true
   }
 }

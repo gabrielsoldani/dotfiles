@@ -1,8 +1,8 @@
 # shellcheck shell=bash
 
-if ! . "$SHELLDOTDIR/rc"; then
-    return 1
-fi
+SHELLDOTDIR="${XDG_CONFIG_HOME:-$HOME/.config}/shell"
+
+. "$SHELLDOTDIR/rc.sh" || return 1
 
 # Detect `bash --posix` and bail.
 # FIXME: It should be sourcing $ENV instead, and we shouldn't need this.
@@ -14,12 +14,8 @@ fi
 
 BASHDOTDIR="${XDG_CONFIG_HOME:-$HOME/.config}/bash"
 
-# Enable programmable completions.
-source_if_exists "/usr/share/bash-completion/bash_completion" \
-    || source_if_exists "/etc/bash_completion" \
-    || echo "bash-completion not installed." >&2
-
-source_if_exists "$BASHDOTDIR/asdf/rc"
-source_if_exists "$BASHDOTDIR/brew/rc"
-source_if_exists "$BASHDOTDIR/dotnet/rc"
-source_if_exists "$BASHDOTDIR/starship/rc"
+# Scripts
+for f in "$BASHDOTDIR"/rc.d/*; do
+    source_if_exists "$f"
+done
+unset -v f
