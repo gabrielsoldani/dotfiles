@@ -1,4 +1,4 @@
-# shellcheck disable=SC3000-SC4000
+# shellcheck shell=sh disable=SC3000-SC4000
 
 ###
 # Changing directories
