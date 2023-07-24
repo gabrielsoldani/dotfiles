@@ -5,10 +5,3 @@
 # Sign all commits
 [commit]
   gpgsign=true
-
-# Enforce SSH authentication for GitHub
-[url "ssh://git@github.com/"]
-  insteadOf = https://github.com/
-
-[url "ssh://git@github.com/"]
-  insteadOf = https://gist.github.com/
