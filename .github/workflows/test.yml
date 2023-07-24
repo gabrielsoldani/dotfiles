@@ -30,3 +30,13 @@ jobs:
       uses: Homebrew/actions/setup-homebrew@master
     - name: Bootstrap
       run: ./bootstrap.sh
+
+  test-alpine:
+    name: Test with Alpine Package Keeper
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - uses: jirutka/setup-alpine@v1
+    - name: Bootstrap
+      run: ./bootstrap.sh
+      shell: alpine.sh {0}
