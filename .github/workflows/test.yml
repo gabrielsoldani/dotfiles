@@ -1,0 +1,32 @@
+name: 'Test'
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  test-brew-macos:
+    name: Test with Homebrew for macOS
+    runs-on: macos-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Set up Homebrew
+      id: set-up-homebrew
+      uses: Homebrew/actions/setup-homebrew@master
+    - name: Bootstrap
+      run: ./bootstrap.sh
+
+  test-brew-linux:
+    name: Test with Homebrew for Linux
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Set up Homebrew
+      id: set-up-homebrew
+      uses: Homebrew/actions/setup-homebrew@master
+    - name: Bootstrap
+      run: ./bootstrap.sh
