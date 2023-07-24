@@ -1,0 +1,22 @@
+name: 'Test'
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  test-alpine:
+    name: Test on Alpine
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - uses: jirutka/setup-alpine@v1
+      with:
+        packages: sudo
+    - name: Bootstrap
+      run: ./bootstrap.sh
+      shell: alpine.sh {0}
