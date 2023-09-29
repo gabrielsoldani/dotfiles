@@ -40,6 +40,7 @@ brew "font-hack-nerd-font" if OS.linux?
 #       No need for `if OS.mac?` here.
 cask "1password"
 cask "1password-cli"
+cask "blackhole-2ch"
 cask "google-chrome"
 cask "monitorcontrol"
 cask "rectangle"
