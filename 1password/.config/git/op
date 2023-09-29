@@ -5,3 +5,7 @@
 # Sign all commits
 [commit]
   gpgsign=true
+
+# macOS-specific settings
+[includeIf "gitdir:/Users/"]
+  path = op.mac
