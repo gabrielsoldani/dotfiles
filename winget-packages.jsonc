@@ -3,8 +3,8 @@
   "Sources": [
     {
       "Packages": [
-        { "PackageIdentifier": "7zip.7zip" },
-        { "PackageIdentifier": "clsid2.mpc-hc" },
+        // { "PackageIdentifier": "7zip.7zip" },
+        // { "PackageIdentifier": "clsid2.mpc-hc" },
         // { "PackageIdentifier": "CodeSector.TeraCopy" },
         { "PackageIdentifier": "Discord.Discord" },
         // { "PackageIdentifier": "Docker.DockerDesktop" },
@@ -13,10 +13,10 @@
         // { "PackageIdentifier": "Microsoft.Edge" },
         // { "PackageIdentifier": "Microsoft.EdgeWebView2Runtime" },
         // { "PackageIdentifier": "Microsoft.OneDrive" },
-        { "PackageIdentifier": "Microsoft.PowerToys" },
+        // { "PackageIdentifier": "Microsoft.PowerToys" },
         // { "PackageIdentifier": "Microsoft.VisualStudioCode" },
-        { "PackageIdentifier": "Mozilla.Firefox" },
-        { "PackageIdentifier": "OBSProject.OBSStudio" },
+        // { "PackageIdentifier": "Mozilla.Firefox" },
+        // { "PackageIdentifier": "OBSProject.OBSStudio" },
         { "PackageIdentifier": "SourceFoundry.HackFonts" },
         { "PackageIdentifier": "Valve.Steam" },
         { "PackageIdentifier": "voidtools.Everything.Lite" },
@@ -58,17 +58,17 @@
         // Spotify
         { "PackageIdentifier": "9NCBCSZSJRSB" },
         // Netflix
-        { "PackageIdentifier": "9WZDNCRFJ3TJ" },
+        // { "PackageIdentifier": "9WZDNCRFJ3TJ" },
         // Disney+
-        { "PackageIdentifier": "9NXQXXLFST89" },
+        // { "PackageIdentifier": "9NXQXXLFST89" },
         // WhatsApp
-        { "PackageIdentifier": "9NKSQGP7F2NH" },
+        // { "PackageIdentifier": "9NKSQGP7F2NH" },
         // Telegram Desktop
-        { "PackageIdentifier": "9NZTWSQNTD0S" },
+        // { "PackageIdentifier": "9NZTWSQNTD0S" },
         // Adobe Creative Cloud
-        { "PackageIdentifier": "XPDLPKWG9SW2WD" },
+        // { "PackageIdentifier": "XPDLPKWG9SW2WD" },
         // iCloud
-        { "PackageIdentifier": "9PKTQ5699M62" }
+        // { "PackageIdentifier": "9PKTQ5699M62" }
       ],
       "SourceDetails": {
         "Argument": "https://storeedgefd.dsx.mp.microsoft.com/v9.0",
