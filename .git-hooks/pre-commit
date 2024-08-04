@@ -1,0 +1,21 @@
+#!/bin/sh
+
+# Stash unstaged changes
+git stash -q --keep-index
+
+cleanup () {
+    # shellcheck disable=SC2317
+    git stash pop -q
+}
+
+trap exit INT HUP TERM
+trap 'cleanup' EXIT
+
+# Shellcheck all staged shell files
+git diff --cached --name-only --diff-filter=ACM \
+    | grep -E '(\.(sh|bash|zsh|bashrc|bash_profile|zprofile|zshenv|zshrc)|pre-commit)$' \
+    | tr '\n' '\0' \
+    | xargs -0 shellcheck \
+    || { echo "Shellcheck failed"; exit 1; }
+
+exit 0

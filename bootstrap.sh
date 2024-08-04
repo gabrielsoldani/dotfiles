@@ -134,6 +134,7 @@ maybe_stow_git() {
     stow -R git
 
     git update-index --skip-worktree "git/.gitconfig"
+    git config --local core.hooksPath ".git-hooks/"
 }
 
 install_packages
