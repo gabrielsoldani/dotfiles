@@ -22,6 +22,7 @@ brew "stow"
 brew "tree"
 brew "wget"
 brew "youtube-dl"
+brew "zoxide"
 brew "zsh"
 
 # macOS-only formulae
