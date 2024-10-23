@@ -147,4 +147,4 @@ maybe_stow_zsh
 maybe_stow_git
 
 echo "Bootstrapping complete"
-return 0
+exit 0
