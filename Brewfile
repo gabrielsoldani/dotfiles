@@ -60,7 +60,5 @@ cask "zoom"
 mas "1Password for Safari", id: 1569813296
 mas "Amphetamine", id: 937984704
 mas "Color Picker", id: 1545870783
-mas "MeetingBar", id: 1532419400
-mas "Hidden Bar", id: 1452453066
 mas "Speedtest", id: 1153157709
 mas "WhatsApp", id: 1147396723
