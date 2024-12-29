@@ -6,3 +6,8 @@
 # setting the following environment variable because we want to disable
 # installer telemetry as well.
 export DOTNET_CLI_TELEMETRY_OPTOUT=1
+
+if [ -n "$HOMEBREW_PREFIX" ] \
+    && [ -e "$HOMEBREW_PREFIX/opt/dotnet/libexec" ]; then
+    export DOTNET_ROOT="$HOMEBREW_PREFIX/opt/dotnet/libexec"
+fi
