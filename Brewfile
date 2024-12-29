@@ -43,6 +43,7 @@ brew "font-hack-nerd-font" if OS.linux?
 cask "1password"
 cask "1password-cli"
 cask "blackhole-2ch"
+cask "firefox"
 cask "google-chrome"
 cask "ghostty"
 cask "monitorcontrol"
