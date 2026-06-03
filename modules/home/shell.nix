@@ -35,11 +35,6 @@
       # Expansion and Globbing
       ###
 
-      # Treat the ‘#’, ‘~’ and ‘^’ characters as part of patterns for filename
-      # generation, etc. (An initial unquoted ‘~’ always produces named
-      # directory expansion.)
-      "extendedglob"
-
       # If a pattern for filename generation has no matches, print an error,
       # instead of leaving it unchanged in the argument list.
       "nomatch"
