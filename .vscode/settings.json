@@ -1,10 +1,11 @@
 {
-  "files.associations": {
-    "**/.config/git/*": "properties",
-    "**/.ssh/config.d/*": "ssh_config"
-  },
-  "git.autoRepositoryDetection": "openEditors",
-  "search.exclude": {
-    "zsh/.config/zsh/plugins/**": true
+  "nix.enableLanguageServer": true,
+  "nix.serverPath": "nixd",
+  "nix.serverSettings": {
+    "nixd": {
+      "formatting": {
+        "command": ["nixfmt"]
+      }
+    }
   }
 }

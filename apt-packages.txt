@@ -1,9 +1,0 @@
-bash
-curl
-git
-htop
-neofetch
-rsync
-tree
-stow
-zsh

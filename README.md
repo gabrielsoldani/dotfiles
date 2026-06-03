@@ -1,63 +1,76 @@
 # Gabriel Soldani's dotfiles
 
-## Design
+This repository contains my Nix flake-based macOS configuration, built with `nix-darwin` and Home Manager.
 
-### Goals
+## What this repo does
 
-- [x] Easy to set up
-- [x] Works on macOS and Linux
-- [x] Works with different shells
-- [x] Keeps the `$HOME` clean and tidy
-
-### Anti-goals
-
-- [ ] Uses a templating system
-- [ ] Manages secrets
-- [ ] Obsesses over shell script performance
+- Manages macOS system settings with `nix-darwin`
+- Manages user packages and dotfiles with Home Manager
 
 ## Prerequisites
 
-### On macOS
+You need Nix with flakes enabled.
 
-- [brew](https://brew.sh/#install)
-- GNU Stow
+## Development shell
 
-  ```text
-  brew install stow
-  ```
-
-### On Linux
-
-- GNU Stow
-
-## Usage
-
-First of all, make sure you've cloned this repository to `$HOME/dotfiles`. This can be done with:
+Start in the dev shell when working on this repo:
 
 ```text
-git clone --recurse-submodules https://github.com/gabrielsoldani/dotfiles "$HOME/dotfiles"
+nix develop
 ```
 
-Every immediate child directory in this repository is a Stow package.
-They're named after the software you're probably looking to configure.
-For example, the dotfiles for `zsh` are in `./zsh`.
-This isn't always the software the dotfiles apply to:
-For example, `apple-emoji-linux` contains `fontconfig` dotfiles you need to use `apple-emoji-linux`, and `gh` contains `git` dotfiles to make `git` use it as a credential provider.
-
-To apply the package `package`, run:
+If you use `direnv`, allow this repository once and it will load the dev shell automatically when you enter it:
 
 ```text
-stow package
+direnv allow
 ```
 
-To unapply the package `package`, run:
+## Apply the configuration
+
+By default, use the current machine hostname:
 
 ```text
-stow -D package
+nh darwin switch .
 ```
 
-To reapply the package `package`, run:
+If you want to target a different host explicitly, set it with `-H`:
 
 ```text
-stow -R package
+nh darwin switch . -H abacaxi
+```
+
+## New machines
+
+When setting up a new machine, create a new configuration under `hosts/<hostname>/` rather than folding it into an existing host.
+
+In practice that means adding:
+
+```text
+hosts/<hostname>/flake-module.nix
+hosts/<hostname>/configuration.nix
+```
+
+and importing that host module from `flake.nix`.
+
+## Update inputs
+
+From the repository root, update flake inputs with:
+
+```text
+nix flake update
+```
+
+Then apply the updated configuration again:
+
+```text
+nh darwin switch .
+```
+
+## Formatting and checks
+
+Common commands:
+
+```text
+nix fmt
+nix flake check
 ```
