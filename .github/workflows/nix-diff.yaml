@@ -1,0 +1,92 @@
+name: Nix Diff
+
+on:
+  pull_request:
+    types:
+      - opened
+      - reopened
+      - synchronize
+      - ready_for_review
+
+permissions:
+  actions: read
+  contents: read
+  pull-requests: write
+
+jobs:
+  discover-outputs:
+    name: Discover Outputs
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.discover-outputs.outputs.matrix }}
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          fetch-depth: 0
+
+      - name: Install Nix
+        uses: DeterminateSystems/nix-installer-action@main
+
+      - name: Enable Magic Nix Cache
+        uses: DeterminateSystems/magic-nix-cache-action@main
+
+      - name: Discover diff outputs
+        id: discover-outputs
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          matrix_json="$(nix eval --impure --json --file ./ci/discover-outputs.nix)"
+
+          {
+            echo 'matrix<<EOF'
+            printf '%s\n' "$matrix_json"
+            echo 'EOF'
+          } >> "$GITHUB_OUTPUT"
+
+  diff-outputs:
+    name: Diff ${{ matrix.name }}
+    needs: discover-outputs
+    strategy:
+      fail-fast: false
+      matrix:
+        include: ${{ fromJson(needs.discover-outputs.outputs.matrix) }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          fetch-depth: 0
+
+      - name: Install Nix
+        uses: DeterminateSystems/nix-installer-action@main
+
+      - name: Enable Magic Nix Cache
+        uses: DeterminateSystems/magic-nix-cache-action@main
+
+      - name: Diff output derivation
+        uses: natsukium/nix-diff-action@v1.1.0
+        with:
+          mode: diff-only
+          comment-strategy: update
+          directory: .
+          attributes: |
+            - displayName: ${{ matrix.name }}
+              attribute: ${{ matrix.attr }}
+
+  post-diff-comment:
+    name: Post Diff Comment
+    if: ${{ always() }}
+    needs:
+      - discover-outputs
+      - diff-outputs
+    runs-on: ubuntu-latest
+    steps:
+      - name: Post aggregated diff comment
+        uses: natsukium/nix-diff-action@v1.1.0
+        with:
+          mode: comment-only
+          comment-strategy: update
