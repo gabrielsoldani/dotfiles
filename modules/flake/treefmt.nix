@@ -20,6 +20,8 @@
         programs.deadnix.enable = true;
         programs.nixfmt.enable = true;
 
+        programs.actionlint.enable = true;
+
         programs.prettier.enable = true;
 
         programs.shellcheck.enable = true;
