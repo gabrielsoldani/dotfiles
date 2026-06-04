@@ -1,18 +1,32 @@
-{ ... }:
+{ inputs, ... }:
 
 {
   _class = "flake";
 
+  imports = [ inputs.git-hooks-nix.flakeModule ];
+
   perSystem =
-    { pkgs, ... }:
+    { config, pkgs, ... }:
     {
+      pre-commit.settings.hooks = {
+        treefmt.enable = true;
+      };
+
       devShells.default = pkgs.mkShellNoCC {
-        packages = with pkgs; [
-          nixfmt
-          nixd
-          nh
-          prettier
-        ];
+        shellHook = ''
+          ${config.pre-commit.shellHook}
+        '';
+
+        packages =
+          with pkgs;
+          [
+            nixfmt
+            nixd
+            nh
+            prettier
+            config.treefmt.build.wrapper
+          ]
+          ++ config.pre-commit.settings.enabledPackages;
       };
     };
 }

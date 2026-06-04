@@ -8,6 +8,9 @@
     { ... }:
     {
       treefmt = {
+        # git-hooks-nix already adds a check that runs treefmt
+        flakeCheck = false;
+
         projectRootFile = "flake.nix";
 
         settings.global.excludes = [
