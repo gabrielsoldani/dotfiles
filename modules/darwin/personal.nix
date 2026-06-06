@@ -25,25 +25,7 @@
     # OpenAI's official ChatGPT desktop app
     "chatgpt"
 
-    # Disk space visualiser
-    "daisydisk"
-
-    # Voice and text chat software
-    "discord"
-
-    # Free and open-source media player
-    "iina"
-
-    # Client for Proton Mail and Proton Calendar
-    "proton-mail"
-
     # VPN client focusing on security
     "protonvpn"
-
-    # Music streaming service
-    "spotify"
-
-    # Video communication and virtual meeting platform
-    "zoom"
   ];
 }
