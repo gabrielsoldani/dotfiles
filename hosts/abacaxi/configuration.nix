@@ -37,6 +37,10 @@
     home.username = "gabriel";
     home.homeDirectory = "/Users/gabriel";
     home.stateVersion = "26.05";
+
+    home.packages = with pkgs; [
+      zoom-us
+    ];
   };
 
   nixpkgs.hostPlatform = "aarch64-darwin";
@@ -44,7 +48,10 @@
   nixpkgs.config.allowUnfreePredicate =
     pkg:
     builtins.elem (lib.getName pkg) [
+      "daisydisk"
       "claude-code"
+      "spotify"
+      "zoom"
     ];
 
   system.configurationRevision = self.rev or self.dirtyRev or null;
@@ -52,6 +59,9 @@
   homebrew.casks = [
     # Tool to flash OS images to SD cards & USB drives
     "balenaetcher"
+
+    # Voice and text chat software
+    "discord"
 
     # App to build and share containerised applications and microservices
     "docker-desktop"
