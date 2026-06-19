@@ -73,22 +73,10 @@
     };
 
     casks = [
-      # Display management tool
       "betterdisplay"
-
-      # File finder
-      "find-any-file"
-
-      # Web browser
       "firefox"
-
-      # Web browser
       "google-chrome"
-
-      # Tool to reverse the direction of scrolling
       "scroll-reverser"
-
-      # Open-source code editor
       "visual-studio-code"
     ];
   };

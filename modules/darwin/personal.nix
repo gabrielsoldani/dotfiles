@@ -16,16 +16,13 @@
   };
 
   homebrew.casks = [
-    # Password manager that keeps all passwords secure behind one password
     "1password"
-
-    # Command-line interface for 1Password
     "1password-cli"
-
-    # OpenAI's official ChatGPT desktop app
     "chatgpt"
-
-    # VPN client focusing on security
+    "daisydisk"
+    "iina"
+    "proton-mail"
     "protonvpn"
+    "spotify"
   ];
 }
