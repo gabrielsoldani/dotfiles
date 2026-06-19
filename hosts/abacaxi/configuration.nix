@@ -30,6 +30,7 @@
       ../../modules/home/dev-tools.nix
       ../../modules/home/dev-tools-desktop.nix
       ../../modules/home/git.nix
+      ../../modules/home/nix-index.nix
       ../../modules/home/opencode.nix
       ../../modules/home/shell.nix
     ];
