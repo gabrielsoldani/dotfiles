@@ -55,6 +55,7 @@
     "discord"
     "docker-desktop"
     "dolphin"
+    "modrinth"
     "parsec"
     "zoom"
     "zotero"
