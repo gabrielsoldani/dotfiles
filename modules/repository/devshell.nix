@@ -1,16 +1,14 @@
-{ inputs, ... }:
+{ den, inputs, ... }:
 
 {
-  _class = "flake";
-
   imports = [ inputs.git-hooks-nix.flakeModule ];
 
-  perSystem =
+  den.schema.flake-parts.includes = [ den.aspects.devshell ];
+
+  den.aspects.devshell.flake-parts =
     { config, pkgs, ... }:
     {
-      pre-commit.settings.hooks = {
-        treefmt.enable = true;
-      };
+      pre-commit.settings.hooks.treefmt.enable = true;
 
       devShells.default = pkgs.mkShellNoCC {
         shellHook = ''

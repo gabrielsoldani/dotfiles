@@ -2,6 +2,8 @@
   description = "Personal configurations";
 
   inputs = {
+    den.url = "github:denful/den/v0.18.0";
+
     flake-parts.url = "github:hercules-ci/flake-parts";
 
     git-hooks-nix = {
@@ -14,7 +16,9 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nix-darwin = {
+    import-tree.url = "github:denful/import-tree";
+
+    darwin = {
       url = "github:nix-darwin/nix-darwin/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
@@ -33,18 +37,6 @@
   };
 
   outputs =
-    inputs@{ flake-parts, ... }:
-    flake-parts.lib.mkFlake { inherit inputs; } {
-      imports = [
-        ./modules/flake/devshell.nix
-        ./modules/flake/treefmt.nix
-        ./hosts/abacaxi/flake-module.nix
-      ];
-
-      systems = [
-        "aarch64-darwin"
-        "aarch64-linux"
-        "x86_64-linux"
-      ];
-    };
+    inputs@{ flake-parts, import-tree, ... }:
+    flake-parts.lib.mkFlake { inherit inputs; } (import-tree ./modules);
 }
