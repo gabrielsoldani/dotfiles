@@ -142,7 +142,7 @@
           rm = "rm -iv";
           man = "batman";
         }
-        // lib.optionalAttrs pkgs.stdenv.isLinux {
+        // lib.optionalAttrs pkgs.stdenv.hostPlatform.isLinux {
           open = "xdg-open";
         };
 

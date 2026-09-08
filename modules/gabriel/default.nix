@@ -57,7 +57,7 @@
           };
         };
 
-        targets.darwin = lib.mkIf pkgs.stdenv.isDarwin {
+        targets.darwin = lib.mkIf pkgs.stdenv.hostPlatform.isDarwin {
           defaults = {
             NSGlobalDomain = {
               AppleInterfaceStyleSwitchesAutomatically = true;
