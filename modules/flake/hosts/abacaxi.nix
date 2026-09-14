@@ -3,9 +3,8 @@
 let
   abacaxi = {
     imports = [
-      ../../darwin/default.nix
-      ../../darwin/1password.nix
-      ../../darwin/zsh.nix
+      inputs.self.darwinModules.default
+      inputs.self.darwinModules."1password"
     ];
 
     system.primaryUser = "gabriel";
@@ -30,6 +29,8 @@ let
       "discord"
       "docker-desktop"
       "dolphin"
+      "firefox"
+      "google-chrome"
       "iina"
       "modrinth"
       "parsec"
@@ -45,10 +46,10 @@ let
     home-manager.extraSpecialArgs = { inherit inputs; };
     home-manager.users.gabriel = {
       imports = [
-        ../home/default.nix
-        ../home/1password.nix
-        ../home/dev-tools-cli.nix
-        ../home/dev-tools-desktop.nix
+        inputs.self.homeModules.default
+        inputs.self.homeModules."1password"
+        inputs.self.homeModules.devToolsCli
+        inputs.self.homeModules.devToolsDesktop
       ];
 
       programs.nh = {
@@ -67,6 +68,7 @@ let
 
       home.username = "gabriel";
       home.homeDirectory = "/Users/gabriel";
+
       home.stateVersion = "26.05";
     };
   };
