@@ -1,5 +1,17 @@
-{ lib, ... }:
 {
+  inputs,
+  lib,
+  pkgs,
+  ...
+}:
+let
+  system = pkgs.stdenv.hostPlatform.system;
+in
+{
+  imports = [
+    inputs.nix-index-database.darwinModules.nix-index
+  ];
+
   nix.settings.experimental-features = [
     "nix-command"
     "flakes"
@@ -82,4 +94,9 @@
     # Useful support for interacting with Terminal.app or other terminal programs
     [ -r "/etc/zshrc_$TERM_PROGRAM" ] && . "/etc/zshrc_$TERM_PROGRAM"
   '';
+
+  programs.nix-index = {
+    enable = true;
+    package = inputs.nix-index-database.packages.${system}.nix-index-with-small-db;
+  };
 }
