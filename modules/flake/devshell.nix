@@ -1,11 +1,9 @@
-{ den, inputs, ... }:
+{ inputs, ... }:
 
 {
   imports = [ inputs.git-hooks-nix.flakeModule ];
 
-  den.schema.flake-parts.includes = [ den.aspects.devshell ];
-
-  den.aspects.devshell.flake-parts =
+  perSystem =
     { config, pkgs, ... }:
     {
       pre-commit.settings.hooks.treefmt.enable = true;

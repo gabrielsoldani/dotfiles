@@ -2,7 +2,7 @@
   description = "Personal configurations";
 
   inputs = {
-    den.url = "github:denful/den/v0.18.0";
+    nixpkgs.url = "https://channels.nixos.org/nixos-unstable/nixexprs.tar.zst";
 
     flake-parts.url = "github:hercules-ci/flake-parts";
 
@@ -16,9 +16,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    import-tree.url = "github:denful/import-tree";
-
-    darwin = {
+    nix-darwin = {
       url = "github:nix-darwin/nix-darwin/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
@@ -28,8 +26,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nixpkgs.url = "https://channels.nixos.org/nixos-unstable/nixexprs.tar.zst";
-
     treefmt-nix = {
       url = "github:numtide/treefmt-nix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -37,6 +33,23 @@
   };
 
   outputs =
-    inputs@{ flake-parts, import-tree, ... }:
-    flake-parts.lib.mkFlake { inherit inputs; } (import-tree ./modules);
+    inputs@{ flake-parts, ... }:
+    flake-parts.lib.mkFlake { inherit inputs; } (
+      { ... }:
+      {
+        imports = [
+          ./modules/flake/hosts/abacaxi.nix
+          ./modules/flake/darwin.nix
+          ./modules/flake/devshell.nix
+          ./modules/flake/home.nix
+          ./modules/flake/treefmt.nix
+        ];
+
+        systems = [
+          "aarch64-darwin"
+          "aarch64-linux"
+          "x86_64-linux"
+        ];
+      }
+    );
 }

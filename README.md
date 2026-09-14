@@ -6,13 +6,13 @@ This repository contains my Nix flake-based macOS configuration, built with `nix
 
 - Manages macOS system settings with `nix-darwin`
 - Manages user packages and dotfiles with Home Manager
-- Shares reusable configuration across machines with Den aspects
+- Shares reusable configuration across machines with flake-parts modules
 
 ## Configuration structure
 
-Reusable configuration lives under `modules/gabriel/`. Each file defines a focused feature, such as Git, Zsh, Ghostty, or OpenCode, in the exported `gabriel` Den namespace.
+Reusable configuration is split between `modules/darwin/` and `modules/home/` and imported directly by each host. Selected Darwin and Home Manager modules are also exported for reuse through the flake.
 
-Machine configurations live under `modules/hosts/` and compose features from that namespace. Configuration for this repository's development shell, formatting, and checks lives under `modules/repository/`. `import-tree` loads the modules from these directories.
+Machine configurations live under `modules/hosts/` and compose these modules. Configuration for this repository's development shell, formatting, and checks lives under `modules/repository/`.
 
 ## Prerequisites
 
